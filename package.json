@@ -1,0 +1,27 @@
+{
+  "name": "txp4",
+  "version": "0.0.1",
+  "description": "TrackMania Experience v4",
+  "main": "index.js",
+  "repository": "https://github.com/kamsac/txp4.git",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn start:watch",
+    "start:watch": "concurrently --kill-others-on-fail --prefix \"[{name}]\" --names \"TS,HTTP\" --prefix-colors \"bgBlue.bold,bgMagenta.bold\" \"tsc\" \"nodemon ./build/server/index.js\"",
+    "build": "yarn build:server",
+    "build:watch": "yarn build:server:watch",
+    "build:server": "tsc",
+    "build:server:watch": "tsc -w",
+    "build:client": "exit 0",
+    "build:client:watch": "exit 0",
+    "test": "echo \"No tests yet. :( && exit 1\"",
+    "test:watch": "echo \"No tests yet. :( && exit 1\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^9.4.5",
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.14.12",
+    "typescript": "^2.7.1"
+  }
+}
