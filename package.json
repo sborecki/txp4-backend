@@ -14,14 +14,18 @@
     "build:server:watch": "tsc -w",
     "build:client": "exit 0",
     "build:client:watch": "exit 0",
+    "lint": "tslint src/server/**/*.ts --format \"msbuild\"",
+    "lint:watch": "yarn lint & chokidar \"src/server/**/*.ts\" --command \"yarn lint\"",
     "test": "echo \"No tests yet. :( && exit 1\"",
     "test:watch": "echo \"No tests yet. :( && exit 1\""
   },
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^9.4.5",
+    "chokidar-cli": "^1.2.0",
     "concurrently": "^3.5.1",
     "nodemon": "^1.14.12",
+    "tslint": "^5.9.1",
     "typescript": "^2.7.1"
   }
 }
