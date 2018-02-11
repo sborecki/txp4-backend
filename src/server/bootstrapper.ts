@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as helmet from 'helmet';
 
 export default class Bootstrapper {
     private application: express.Application;
@@ -17,6 +18,7 @@ export default class Bootstrapper {
     private setConfiguration(): void {
         this.application.set('port', 9090);
         this.application.set('view engine', 'pug');
+        this.application.use(helmet());
     }
 
     private setSinglePageApplicationRoute(): void {
