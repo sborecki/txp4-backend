@@ -5,6 +5,7 @@ import renderSinglePageApplicationHandler from './middlewares/render-single-page
 
 export default class Bootstrapper {
     private application: express.Application;
+    private port: number;
 
     public constructor() {
         this.application = express();
@@ -14,12 +15,15 @@ export default class Bootstrapper {
         this.setErrorHandlers();
     }
 
-    public getApplication(): express.Application {
-        return this.application;
+    public start(): void {
+        this.application.listen(this.port, () => {
+            // tslint:disable-next-line:no-console
+            console.log(`Application is running at http://localhost:${this.port}.`);
+        });
     }
 
     private setConfiguration(): void {
-        this.application.set('port', 9090);
+        this.port = 9090;
         this.application.set('view engine', 'pug');
         this.application.use(helmet());
     }
