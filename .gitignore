@@ -1,4 +1,11 @@
 .idea/
+.vs/
+vs2017.sln
+vs2017.njsproj
+vs2017/
+bin/
+obj/
+
 
 npm-debug.log*
 yarn-debug.log*
