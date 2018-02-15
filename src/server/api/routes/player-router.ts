@@ -10,9 +10,6 @@ router.route('/:playerId')
 router.route('/:playerId/stats')
     .get(controller.getStats);
 
-router.route('/:playerId/inventory')
-    .get(controller.getInventory);
-
 router.route('/:playerId/equip')
     .post(controller.equip);
 

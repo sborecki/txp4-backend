@@ -1,21 +1,69 @@
 ﻿import * as mongoose from 'mongoose';
 
-
 const perfPartSchema: mongoose.Schema = new mongoose.Schema({
-    _id: { type: mongoose.Schema.Types.ObjectId, required: 'Please provide Item ID' },
-    vendor_id: { type: String, enum: ['poziofon','kamylland','sebbco','byzio','botaker','kemotium'] },
-    perfparttype_id: { type: String, enum: ['engine','transmission','tires'] },
-    tier: { type: Number, min: 1, max: 3 },
-    imageUri: { type: String },
-    maxspeed: { type: Number },
-    accel: { type: Number },
-    steering: { type: Number },
-    breaking: { type: Number },
-    turboaccel: { type: Number },
-    turbodur: { type: Number },
-    driftairdecel: { type: Number },
-    grav: { type: Number },
-    waterbounce: { type: Number }
+    _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        autoIndexId: true
+    },
+    vendor: {
+        type: String,
+        enum: ['poziofon', 'kamylland', 'sebbco', 'byzio', 'botaker', 'kemotium'],
+        required: true
+    },
+    perfparttype: {
+        type: String,
+        enum: ['engine', 'transmission', 'tires'],
+        required: true
+    },
+    tier: {
+        type: Number,
+        min: 1,
+        max: 3,
+        required: true
+    },
+    imageUri: {
+        type: String
+    },
+    maxspeed: {
+        type: Number,
+        default: 0,
+        required: true
+    },
+    accel: {
+        type: Number,
+        default: 0,
+        required: true },
+    steering: {
+        type: Number,
+        default: 0,
+        required: true },
+    breaking: {
+        type: Number,
+        default: 0,
+        required: true },
+    turboaccel: {
+        type: Number,
+        default: 0,
+        required: true },
+    turbodur: {
+        type: Number,
+        default: 0,
+        required: true },
+    driftairdecel: {
+        type: Number,
+        default: 0,
+        required: true },
+    grav: {
+        type: Number,
+        default: 0,
+        required: true },
+    waterbounce: {
+        type: Number,
+        default: 0,
+        required: true
+    }
 });
 
-export = mongoose.model('PerfParts', perfPartSchema);
+const model: mongoose.Model<mongoose.Document> = mongoose.model('PerfParts', perfPartSchema);
+export = model;

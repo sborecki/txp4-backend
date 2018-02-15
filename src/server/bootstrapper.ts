@@ -33,7 +33,7 @@ export default class Bootstrapper {
     }
 
     private setDatabase(): void {
-        //mongoose.connect();
+        mongoose.connect('mongodb://localhost/test');
     }
 
     private setSinglePageApplicationRoute(): void {
