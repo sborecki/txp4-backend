@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as helmet from 'helmet';
-import * as mongoose from 'mongoose';
+import initDatabase from './database/database-initializer';
 import * as masterRouter from './api/routes/master-router';
 import pageNotFoundHandler from './middlewares/page-not-found-handler';
 import renderSinglePageApplicationHandler from './middlewares/render-single-page-application-handler';
@@ -13,7 +13,7 @@ export default class Bootstrapper {
     public constructor() {
         this.application = express();
         this.setConfiguration();
-        this.setDatabase();
+        this.initDatabase();
         this.setSinglePageApplicationRoute();
         this.setRouters();
         this.setErrorHandlers();
@@ -32,23 +32,8 @@ export default class Bootstrapper {
         this.application.use(helmet());
     }
 
-    private setDatabase(): void {
-        mongoose.connect(this.getDatabaseConnectionString());
-        var db: mongoose.Connection = mongoose.connection;
-        db.on('error', console.error.bind(console, 'MongoDB: connection error:'));
-        db.once('open', function () {
-            // tslint:disable-next-line:no-console
-            console.log(`Successfully connected to MongoDB database`);
-        });
-    }
-
-    private getDatabaseConnectionString(): string {
-        return 'mongodb://'
-            + "txpapi" + ":"
-            + (process.env.ENV_MONGODB_PASSWORD !== undefined ? process.env.ENV_MONGODB_PASSWORD : "txp") + "@"
-            + (process.env.ENV_MONGODB_HOST !== undefined ? process.env.ENV_MONGODB_HOST : "localhost") + ":"
-            + (process.env.ENV_MONGODB_PORT !== undefined ? process.env.ENV_MONGODB_PORT : "27017")
-            + "/txpdb";
+    private initDatabase(): void {
+        initDatabase();
     }
 
     private setSinglePageApplicationRoute(): void {
