@@ -33,31 +33,38 @@ const perfPartSchema: mongoose.Schema = new mongoose.Schema({
     accel: {
         type: Number,
         default: 0,
-        required: true },
+        required: true
+    },
     steering: {
         type: Number,
         default: 0,
-        required: true },
+        required: true
+    },
     breaking: {
         type: Number,
         default: 0,
-        required: true },
+        required: true
+    },
     turboaccel: {
         type: Number,
         default: 0,
-        required: true },
+        required: true
+    },
     turbodur: {
         type: Number,
         default: 0,
-        required: true },
+        required: true
+    },
     driftairdecel: {
         type: Number,
         default: 0,
-        required: true },
+        required: true
+    },
     grav: {
         type: Number,
         default: 0,
-        required: true },
+        required: true
+    },
     waterbounce: {
         type: Number,
         default: 0,
