@@ -8,26 +8,26 @@ import { StatModelDTO } from '../dto-models/stat-model-dto';
 import { EquipDataDTO } from '../dto-models/equip-data-dto';
 
 export function getOrCreatePlayer(request: express.Request, response: express.Response): void {
-    PlayerModel.findOne({ name: request.params.playerLogin }, function (error: any, document: mongoose.Document) {
+    PlayerModel.findOne({ playerlogin: request.params.playerLogin }, function (error: any, document: mongoose.Document) {
         if (document == null) { //TODO: check what happens if player is not found
-            createPlayer(request, response);
+            createPlayer(request.params.playerLogin, response);
         } else {
             response.json(document);
         }
     });
 }
 
-function createPlayer(request: express.Request, response: express.Response): void {
-    const newPlayer: mongoose.Document = new PlayerModel({ name: request.params.playerLogin });
+function createPlayer(playerLogin: string, response: express.Response): void {
+    const newPlayer: mongoose.Document = new PlayerModel({ playerlogin: playerLogin });
     newPlayer.save(function (error, document) {
         if (error)
-            response.send(error);
+            response.sendStatus(500);
         response.json(document);
     });
 }
 
 export function deletePlayer(request: express.Request, response: express.Response): void {
-    PlayerModel.remove({ name: request.params.playerLogin }, function (error) {
+    PlayerModel.remove({ playerlogin: request.params.playerLogin }, function (error) {
         if (error)
             response.send(error);
         response.sendStatus(200);
@@ -35,7 +35,7 @@ export function deletePlayer(request: express.Request, response: express.Respons
 }
 
 export function getStats(request: express.Request, response: express.Response): void {
-    PlayerModel.findOne({ name: request.params.playerLogin }, co(function* (error: any, document: mongoose.Document) {
+    PlayerModel.findOne({ playerlogin: request.params.playerLogin }, co(function* (error: any, document: mongoose.Document) {
         if (error)
             response.send(error);
         const slot1: Promise<mongoose.Document> = Promise.resolve(PerfPartModel.findById(document.get('slot1')));
@@ -62,7 +62,7 @@ function getCombinedStatsAsJSON(slots: Array<mongoose.Document>): string {
 }
 
 export function equip(request: express.Request, response: express.Response): void {
-    PlayerModel.findOne({ name: request.params.playerLogin }, function (error: any, document: mongoose.Document) {
+    PlayerModel.findOne({ playerlogin: request.params.playerLogin }, function (error: any, document: mongoose.Document) {
         if (error)
             response.send(error);
         const equipData: EquipDataDTO = JSON.parse(request.body);
@@ -101,7 +101,7 @@ function applyEquipToDocument(document: mongoose.Document, equipData: EquipDataD
 
 export function reset(request: express.Request, response: express.Response): void {
     PlayerModel.findOneAndUpdate(
-        { name: request.params.playerLogin },
+        { playerlogin: request.params.playerLogin },
         { slot1: null, slot2: null, slot3: null, inventory: [] },
         function (error) {
             if (error)

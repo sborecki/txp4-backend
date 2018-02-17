@@ -8,7 +8,7 @@ const perfPartSchema: mongoose.Schema = new mongoose.Schema({
     },
     vendor: {
         type: String,
-        enum: ['poziofon', 'kamylland', 'sebbco', 'byzio', 'botaker', 'kemotium'],
+        enum: ['Sebb. Co.', 'Poziofon Technologies', 'byZio Industries', 'Botaker Systems', 'KemotiumOre', 'Kamyl&Bugz'],
         required: true
     },
     perfparttype: {
