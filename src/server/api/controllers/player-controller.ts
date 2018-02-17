@@ -47,7 +47,7 @@ export function getStats(request: express.Request, response: express.Response): 
     }).catch(response.sendStatus(500)));
 }
 
-function getCombinedStatsAsJSON(slots: Array<mongoose.Document>) :String {
+function getCombinedStatsAsJSON(slots: Array<mongoose.Document>): string {
     var statModel: StatModelDTO;
     statModel.accel = _.chain(slots).map((s) => s.accel).sum();
     statModel.breaking = _.chain(slots).map((s) => s.breaking).sum();
@@ -107,7 +107,7 @@ export function reset(request: express.Request, response: express.Response): voi
             if (error)
                 response.send(error);
             response.sendStatus(200);
-        });
+        }
     );
 }
 

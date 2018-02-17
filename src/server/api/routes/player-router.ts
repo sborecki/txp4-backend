@@ -3,17 +3,17 @@ import * as controller from '../controllers/player-controller';
 
 const router: express.Router = express.Router();
 
-router.route('/:playerId')
+router.route('/:playerLogin')
     .get(controller.getOrCreatePlayer)
     .delete(controller.deletePlayer);
 
-router.route('/:playerId/stats')
+router.route('/:playerLogin/stats')
     .get(controller.getStats);
 
-router.route('/:playerId/equip')
+router.route('/:playerLogin/equip')
     .post(controller.equip);
 
-router.route('/:playerId/reset')
+router.route('/:playerLogin/reset')
     .post(controller.reset);
 
 export = router;

@@ -33,7 +33,22 @@ export default class Bootstrapper {
     }
 
     private setDatabase(): void {
-        mongoose.connect('mongodb://localhost/test');
+        mongoose.connect(this.getDatabaseConnectionString());
+        var db: mongoose.Connection = mongoose.connection;
+        db.on('error', console.error.bind(console, 'MongoDB: connection error:'));
+        db.once('open', function () {
+            // tslint:disable-next-line:no-console
+            console.log(`Successfully connected to MongoDB database`);
+        });
+    }
+
+    private getDatabaseConnectionString(): string {
+        return 'mongodb://'
+            + "txpapi" + ":"
+            + (process.env.ENV_MONGODB_PASSWORD !== undefined ? process.env.ENV_MONGODB_PASSWORD : "txp") + "@"
+            + (process.env.ENV_MONGODB_HOST !== undefined ? process.env.ENV_MONGODB_HOST : "localhost") + ":"
+            + (process.env.ENV_MONGODB_PORT !== undefined ? process.env.ENV_MONGODB_PORT : "27017")
+            + "/txpdb";
     }
 
     private setSinglePageApplicationRoute(): void {
