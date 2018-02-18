@@ -13,7 +13,7 @@ router.route('/:playerLogin/stats')
 router.route('/:playerLogin/equip')
     .post(controller.equip);
 
-router.route('/:playerLogin/reset')
-    .post(controller.reset);
+router.route('/:playerLogin/resetAll')
+    .post(controller.resetAll);
 
 export = router;

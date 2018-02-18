@@ -1,8 +1,9 @@
 ﻿export interface RaceResultsDTO {
     environment: string,
-    perfPartBonus: number,
-    txpBonus: number,
-    results: [RacePositionDTO]
+    authortime: number,
+    perfPartFindMultipiler: number,
+    txpPointsMultipiler: number,
+    results: RacePositionDTO[]
 }
 
 interface RacePositionDTO {

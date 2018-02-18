@@ -42,7 +42,7 @@ export function getStats(request: express.Request, response: express.Response): 
         const slot2: Promise<mongoose.Document> = Promise.resolve(PerfPartModel.findById(document.get('slot2')));
         const slot3: Promise<mongoose.Document> = Promise.resolve(PerfPartModel.findById(document.get('slot3')));
         const slotValues: Array<mongoose.Document> = yield [slot1, slot2, slot3];
-        const statDocument :String = getCombinedStatsAsJSON(slotValues); //do we need callback here?
+        const statDocument :String = getCombinedStatsAsJSON(slotValues); //TODO: not working, do we need callback here?
         response.send(statDocument);
     }).catch(response.sendStatus(500)));
 }
@@ -99,11 +99,8 @@ function applyEquipToDocument(document: mongoose.Document, equipData: EquipDataD
     return document;
 }
 
-export function reset(request: express.Request, response: express.Response): void {
-    PlayerModel.findOneAndUpdate(
-        { playerlogin: request.params.playerLogin },
-        { slot1: null, slot2: null, slot3: null, inventory: [] },
-        function (error) {
+export function resetAll(request: express.Request, response: express.Response): void {
+    PlayerModel.update({}, { txp: 0, slot1: null, slot2: null, slot3: null, inventory: [] }, function (error) {
             if (error)
                 response.send(error);
             response.sendStatus(200);
