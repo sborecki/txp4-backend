@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
 export default function initDatabase(): void {
-    mongoose.connect(this.getDatabaseConnectionString());
+    mongoose.connect(getDatabaseConnectionString());
 
     var db: mongoose.Connection = mongoose.connection;
     db.on('error', console.error.bind(console, 'MongoDB: connection error:'));

@@ -7,7 +7,7 @@
 }
 
 interface RacePositionDTO {
-    playerLogin: string,
+    playerlogin: string,
     position: number,
     time: number
 }

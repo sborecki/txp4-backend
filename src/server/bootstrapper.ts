@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as helmet from 'helmet';
+import * as bodyParser from 'body-parser';
 import initDatabase from './database/database-initializer';
 import * as masterRouter from './api/routes/master-router';
 import pageNotFoundHandler from './middlewares/page-not-found-handler';
@@ -30,6 +31,7 @@ export default class Bootstrapper {
         this.port = 9090;
         this.application.set('view engine', 'pug');
         this.application.use(helmet());
+        this.application.use(bodyParser.json())
     }
 
     private initDatabase(): void {

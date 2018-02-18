@@ -1,4 +1,5 @@
 ﻿import * as mongoose from 'mongoose';
+import { IPlayerModel } from './player-model-interface';
 
 const playerSchema: mongoose.Schema = new mongoose.Schema({
     playerlogin: {
@@ -30,5 +31,5 @@ const playerSchema: mongoose.Schema = new mongoose.Schema({
     }
 });
 
-const model: mongoose.Model<mongoose.Document> = mongoose.model('Players', playerSchema);
+const model: mongoose.Model<IPlayerModel> = mongoose.model('Players', playerSchema);
 export = model;

@@ -1,4 +1,5 @@
 ﻿import * as mongoose from 'mongoose';
+import { IPerfPartModel } from './perf-part-model-interface';
 
 const perfPartSchema: mongoose.Schema = new mongoose.Schema({
     _id: {
@@ -72,5 +73,5 @@ const perfPartSchema: mongoose.Schema = new mongoose.Schema({
     }
 });
 
-const model: mongoose.Model<mongoose.Document> = mongoose.model('PerfParts', perfPartSchema);
+const model: mongoose.Model<IPerfPartModel> = mongoose.model('PerfParts', perfPartSchema);
 export = model;

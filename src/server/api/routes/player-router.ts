@@ -3,6 +3,9 @@ import * as controller from '../controllers/player-controller';
 
 const router: express.Router = express.Router();
 
+router.route('/')
+    .delete(controller.resetAll);
+
 router.route('/:playerLogin')
     .get(controller.getOrCreatePlayer)
     .delete(controller.deletePlayer);
@@ -12,8 +15,5 @@ router.route('/:playerLogin/stats')
 
 router.route('/:playerLogin/equip')
     .post(controller.equip);
-
-router.route('/:playerLogin/resetAll')
-    .post(controller.resetAll);
 
 export = router;
