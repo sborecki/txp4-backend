@@ -1,46 +1,33 @@
 ﻿import * as express from 'express';
 import * as mongoose from 'mongoose';
-import * as wait from 'wait.for';
 import * as _ from 'lodash';
 import * as PlayerModel from '../models/player-model';
 import * as PerfPartModel from '../models/perf-part-model';
 import { RaceResultsDTO } from '../dto-models/race-results-dto';
-import { IPlayerModel } from 'src/server/api/models/player-model-interface';
+import { IPlayerModel } from '../models/player-model-interface';
+import { IPerfPart } from '../models/perf-part-interface';
 
 export function onRaceEnd(request: express.Request, response: express.Response): void {
     distribute(request.body);
     response.sendStatus(200);
 }
 
-
 function distribute(raceResults: RaceResultsDTO): void {
     const txpMultipiler: number = Math.max(0, (raceResults.txpPointsMultipiler !== undefined ? raceResults.txpPointsMultipiler : 1));
     const perfPartFindMultipiler: number = Math.max(1, (raceResults.perfPartFindMultipiler !== undefined ? raceResults.perfPartFindMultipiler : 1));
     const noOfPlayers: number = raceResults.results.length;
-    PlayerModel.schema
     for (const result of raceResults.results) {
-        PlayerModel.findOne({ playerlogin: result.playerlogin }, function (error: any, document: IPlayerModel) {
-            if (error)
-                return;
-            document.txp += calculateExtraTxp(txpMultipiler, noOfPlayers, result.position);
-            document.inventory.push(generateRandomPerfPartDropId(perfPartFindMultipiler));
-            document.save();
+        const tier: number = calculatePartDropTier(perfPartFindMultipiler);
+        PerfPartModel.findRandom({ tier: tier }, function (error: any, randomPerfParts: IPerfPart[]) {
+            PlayerModel.findOne({ playerlogin: result.playerLogin }, function (error: any, document: IPlayerModel) {
+                if (error)
+                    return;
+                document.txp += calculateExtraTxp(txpMultipiler, noOfPlayers, result.position);
+                document.inventory.push(randomPerfParts[0]._id);
+                document.save();
+            });
         });
     }
-}
-
-//TODO make querying for random part, including only tier
-const VENDORS: Array<string>
-    = ['Sebb. Co.', 'Poziofon Technologies', 'byZio Industries', 'Botaker Systems', 'KemotiumOre', 'Kamyl&Bugz'];
-const PERFPARTTYPES: Array<string>
-    = ['engine', 'transmission', 'tires'];
-
-function generateRandomPerfPartDropId(multipiler: number): mongoose.Schema.Types.ObjectId {
-    const tier: number = calculatePartDropTier(multipiler);
-    const vendor: string = VENDORS[Math.floor(Math.random() * 6)];
-    const perfparttype: string = PERFPARTTYPES[Math.floor(Math.random() * 3)];
-    var perfPart = wait.for(PerfPartModel.findOne, { tier: tier, vendor: vendor, perfparttype: perfparttype });
-    return perfPart._id;
 }
 
 /*
@@ -50,7 +37,7 @@ function generateRandomPerfPartDropId(multipiler: number): mongoose.Schema.Types
     m - custom multipilter set by admin in request (must be real > 0,  default = 1)
 */
 function calculateExtraTxp(multipiler: number, noOfPlayers: number, position: number): number {
-    return multipiler * (30 + 10 * noOfPlayers) / (position + 2);
+    return Math.round(multipiler * (30 + 10 * noOfPlayers) / (position + 2));
 }
 
 /*

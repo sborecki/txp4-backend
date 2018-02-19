@@ -1,6 +1,7 @@
 ﻿import * as mongoose from 'mongoose';
 
 export interface IPerfPart {
+    _id: any;
     vendor: string;
     perfparttype: string;
     tier: number;

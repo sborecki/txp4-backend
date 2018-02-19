@@ -1,12 +1,8 @@
 ﻿import * as mongoose from 'mongoose';
+import * as random from 'mongoose-simple-random';
 import { IPerfPartModel } from './perf-part-model-interface';
 
 const perfPartSchema: mongoose.Schema = new mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        autoIndexId: true
-    },
     vendor: {
         type: String,
         enum: ['Sebb. Co.', 'Poziofon Technologies', 'byZio Industries', 'Botaker Systems', 'KemotiumOre', 'Kamyl&Bugz'],
@@ -72,6 +68,7 @@ const perfPartSchema: mongoose.Schema = new mongoose.Schema({
         required: true
     }
 });
+perfPartSchema.plugin(random);
 
 const model: mongoose.Model<IPerfPartModel> = mongoose.model('PerfParts', perfPartSchema);
 export = model;
