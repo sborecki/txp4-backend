@@ -1,4 +1,4 @@
-﻿export interface StatModelDTO {
+﻿export class StatModelDTO {
     maxspeed: number;
     accel: number;
     steering: number;

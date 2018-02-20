@@ -1,14 +1,14 @@
 ﻿import * as express from 'express';
 import * as mongoose from 'mongoose';
-import * as co from 'co';
-import * as _ from 'lodash';
 import * as Q from 'q';
+import * as _ from 'lodash';
 import * as PlayerModel from '../models/player-model';
 import * as PerfPartModel from '../models/perf-part-model';
 import { StatModelDTO } from '../dto-models/stat-model-dto';
 import { EquipDataDTO } from '../dto-models/equip-data-dto';
 import { IPlayerModel } from '../models/player-model-interface';
 import { IPerfPart } from '../models/perf-part-interface';
+import { IPlayer } from '../models/player-interface';
 
 export function getOrCreatePlayer(request: express.Request, response: express.Response): void {
     PlayerModel.findOne({ playerlogin: request.params.playerLogin }, function (error: any, player: IPlayerModel) {
@@ -38,22 +38,35 @@ export function deletePlayer(request: express.Request, response: express.Respons
 }
 
 export function getStats(request: express.Request, response: express.Response): void {
-    //TODO: Q.fcall().then...;
-
-    PlayerModel.findOne({ playerlogin: request.params.playerLogin }, co(function* (error: any, player: IPlayerModel) {
-        if (error)
+    var player: IPlayer;
+    var slot1, slot2, slot3: IPerfPart;
+    Q(PlayerModel.findOne({ playerlogin: request.params.playerLogin }).exec())
+        .then(function (_player: IPlayer) {
+            player = _player;
+            return PerfPartModel.findById(player.slot1).exec();
+        })
+        .then(function (_perfPart: IPerfPart) {
+            slot1 = _perfPart;
+            return PerfPartModel.findById(player.slot2).exec();
+        })
+        .then(function (_perfPart: IPerfPart) {
+            slot2 = _perfPart;
+            return PerfPartModel.findById(player.slot3).exec();
+        })
+        .then(function (_perfPart: IPerfPart) {
+            slot3 = _perfPart;
+            const slots = _.chain([slot1, slot2, slot3]).filter(s => s != null).value();
+            const statModel: StatModelDTO = getCombinedStats(slots);
+            response.send(statModel);
+        })
+        .catch(function (error: any) {
             response.send(error);
-        const slot1: Promise<IPerfPart> = Promise.resolve(PerfPartModel.findById(player.slot1));
-        const slot2: Promise<IPerfPart> = Promise.resolve(PerfPartModel.findById(player.slot2));
-        const slot3: Promise<IPerfPart> = Promise.resolve(PerfPartModel.findById(player.slot3));
-        const slotValues: Array<IPerfPart> = yield [slot1, slot2, slot3];
-        const statDocument :String = getCombinedStatsAsJSON(slotValues); //TODO: not working, do we need callback here?
-        response.send(statDocument);
-    }).catch(response.sendStatus(500)));
+        })
+        .done();
 }
 
-function getCombinedStatsAsJSON(slots: IPerfPart[]): string {
-    var statModel: StatModelDTO;
+function getCombinedStats(slots: IPerfPart[]): StatModelDTO {
+    var statModel: StatModelDTO = new StatModelDTO();
     statModel.accel = _.chain(slots).map((s) => s.accel).sum().value();
     statModel.breaking = _.chain(slots).map((s) => s.breaking).sum().value();
     statModel.driftairdecel = _.chain(slots).map((s) => s.driftairdecel).sum().value();
@@ -63,44 +76,44 @@ function getCombinedStatsAsJSON(slots: IPerfPart[]): string {
     statModel.turboaccel = _.chain(slots).map((s) => s.turboaccel).sum().value();
     statModel.turbodur = _.chain(slots).map((s) => s.turbodur).sum().value();
     statModel.waterbounce = _.chain(slots).map((s) => s.waterbounce).sum().value();
-    return JSON.stringify(statModel);
+    return statModel;
 }
 
 export function equip(request: express.Request, response: express.Response): void {
-    PlayerModel.findOne({ playerlogin: request.params.playerLogin }, function (error: any, player: IPlayerModel) {
-        if (error)
+    Q(PlayerModel.findOne({ playerlogin: request.params.playerLogin }))
+        .then(function (player: IPlayerModel) {
+            const equipData: EquipDataDTO = request.body;
+            return applyEquipToDocument(player, equipData);
+        })
+        .then(function (player: IPlayerModel) {
+            player.save(); //for some reason array does not get shortened
+            response.sendStatus(200); 
+        })
+        .catch(function (error: any) {
             response.send(error);
-        const equipData: EquipDataDTO = JSON.parse(request.body);
-        try {
-            player = applyEquipToDocument(player, equipData);
-        } catch (ex) {
-            response.sendStatus(400);
-        }
-        player.save();
-        response.sendStatus(200);
-    });
+        })
+        .done();
 }
 
-function applyEquipToDocument(player: IPlayerModel, equipData: EquipDataDTO) {
-    const currentInventory: mongoose.Schema.Types.ObjectId[] = player.inventory;
-    const targetPerfPartId: mongoose.Schema.Types.ObjectId = currentInventory[equipData.sourcePerfPartIndex];
-    if (targetPerfPartId == null)
+async function applyEquipToDocument(player: IPlayerModel, equipData: EquipDataDTO): Promise<IPlayerModel> {
+    const pulledPerfPartId: mongoose.Schema.Types.ObjectId[] =
+        _.pullAt(player.inventory, [equipData.sourcePerfPartIndex]); 
+    player.markModified('inventory'); //_pullAt mutates the source array
+    if (pulledPerfPartId[0] == null)
         throw new Error('Part index exceeds player\'s inventory.');
     switch (equipData.targetSlotId) {
         case 1:
-            player.slot1 = targetPerfPartId;
+            player.slot1 = pulledPerfPartId[0];
             break;
         case 2:
-            player.slot2 = targetPerfPartId;
+            player.slot2 = pulledPerfPartId[0];
             break;
         case 3:
-            player.slot3 = targetPerfPartId;
+            player.slot3 = pulledPerfPartId[0];
             break;
         default:
             throw new Error('Slot must be an integer between 1 and 3');
     }
-    const modifiedInventory: mongoose.Schema.Types.ObjectId[] = _.pull(currentInventory, targetPerfPartId);
-    player.inventory = modifiedInventory;
     return player;
 }
 
