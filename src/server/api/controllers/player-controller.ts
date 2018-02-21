@@ -86,7 +86,7 @@ export function equip(request: express.Request, response: express.Response): voi
             return applyEquipToDocument(player, equipData);
         })
         .then(function (player: IPlayerModel) {
-            player.save(); //for some reason array does not get shortened
+            player.save();
             response.sendStatus(200); 
         })
         .catch(function (error: any) {

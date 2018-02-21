@@ -6,7 +6,7 @@
     results: RacePositionDTO[]
 }
 
-interface RacePositionDTO {
+export interface RacePositionDTO {
     playerLogin: string,
     position: number,
     time: number
