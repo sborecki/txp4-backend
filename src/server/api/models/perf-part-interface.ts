@@ -8,11 +8,11 @@ export interface IPerfPart {
     imageUri: string;
     maxspeed: number;
     accel: number;
-    steering:number;
+    steering: number;
     breaking: number;
-    turboaccel:number;
+    turboaccel: number;
     turbodur: number;
-    driftairdecel:number;
+    driftairdecel: number;
     grav: number;
     waterbounce: number;
 }

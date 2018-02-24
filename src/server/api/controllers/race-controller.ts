@@ -4,53 +4,60 @@ import * as Q from 'q';
 import * as _ from 'lodash';
 import * as PlayerModel from '../models/player-model';
 import * as PerfPartModel from '../models/perf-part-model';
-import { RaceResultsDTO, RacePositionDTO } from '../dto-models/race-results-dto';
+import { RaceResultsDTO } from '../dto-models/race-results-dto';
+import { RacePositionDTO } from '../dto-models/race-position-dto';
+import { RaceParamsDTO } from '../dto-models/race-params-dto';
+import { DistributionResultDTO } from '../dto-models/distribution-result-dto';
 import { IPlayerModel } from '../models/player-model-interface';
 import { IPerfPartModel } from 'src/server/api/models/perf-part-model-interface';
 
 export function onRaceEnd(request: express.Request, response: express.Response): void {
-    const updatePromises: Q.Promise<DistributionResult>[] = getDistributePointsPromise(request.body);
+    const updatePromises: Array<Q.Promise<DistributionResultDTO>> = getDistributePointsPromise(request.body);
     Q.all(updatePromises)
-        .then(function (results: DistributionResult[]) {
+        .then(function(results: Array<DistributionResultDTO>) {
             const output: string = getGenerateOutputString(results);
             response.send({ msg: output });
         })
-        .catch(function (error: any) {
+        .catch(function(error: any) {
             response.send(error);
         })
         .done();
 }
 
-function getDistributePointsPromise(raceResults: RaceResultsDTO): Q.Promise<DistributionResult>[] {
-    var raceParams: RaceParams = new RaceParams();
-    raceParams.txpMultipiler = Math.max(0, (raceResults.txpPointsMultipiler !== undefined ? raceResults.txpPointsMultipiler : 1));
-    raceParams.perfPartFindMultipiler = Math.max(1, (raceResults.perfPartFindMultipiler !== undefined ? raceResults.perfPartFindMultipiler : 1));
-    raceParams.noOfPlayers= raceResults.results.length;
+function getDistributePointsPromise(raceResults: RaceResultsDTO): Array<Q.Promise<DistributionResultDTO>> {
+    const raceParams: RaceParamsDTO = new RaceParamsDTO();
+    raceParams.txpMultipiler =
+        Math.max(0, (raceResults.txpPointsMultipiler !== undefined ? raceResults.txpPointsMultipiler : 1));
+    raceParams.perfPartFindMultipiler =
+        Math.max(1, (raceResults.perfPartFindMultipiler !== undefined ? raceResults.perfPartFindMultipiler : 1));
+    raceParams.noOfPlayers = raceResults.results.length;
 
-    var updatePromises: Q.Promise<DistributionResult>[] = [];
+    const updatePromises: Array<Q.Promise<DistributionResultDTO>> = new Array<Q.Promise<DistributionResultDTO>>();
     for (const raceResult of raceResults.results) {
         updatePromises.push(getUpdatePlayerPromise(raceResult, raceParams));
     }
     return updatePromises;
 }
 
-function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams: RaceParams): Q.Promise<DistributionResult> {
-    var player: IPlayerModel;
-    var tier: number;
+function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams: RaceParamsDTO)
+        : Q.Promise<DistributionResultDTO> {
+    let player: IPlayerModel;
+    let tier: number;
     return Q(PlayerModel.findOne({ playerlogin: racePosition.playerLogin }).exec())
-        .then(function (_player: IPlayerModel) {
-            player = _player;
+        .then(function(foundPlayer: IPlayerModel) {
+            player = foundPlayer;
             tier = calculatePartDropTier(raceParams.perfPartFindMultipiler);
             return PerfPartModel.count({ tier: tier }).exec();
         })
-        .then(function (perfPartsNo: number) {
+        .then(function(perfPartsNo: number) {
             const random = Math.floor(Math.random() * perfPartsNo);
             return PerfPartModel.findOne({ tier: tier }).skip(random).exec();
         })
-        .then(function (randomPerfPart: IPerfPartModel) {
-            var result: DistributionResult = new DistributionResult();
+        .then(function(randomPerfPart: IPerfPartModel) {
+            const result: DistributionResultDTO = new DistributionResultDTO();
             result.playerLogin = player.playerlogin;
-            result.grantedTxp = calculateExtraTxp(raceParams.txpMultipiler, raceParams.noOfPlayers, racePosition.position);
+            result.grantedTxp =
+                calculateExtraTxp(raceParams.txpMultipiler, raceParams.noOfPlayers, racePosition.position);
             result.grantedPerfPartTier = randomPerfPart.tier;
             result.grantedPerfPartType = randomPerfPart.perfparttype;
             result.grantedPerfPartVendor = randomPerfPart.vendor;
@@ -62,10 +69,10 @@ function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams: RaceP
         });
 }
 
-function getGenerateOutputString(results: DistributionResult[]): string {
-    return _.orderBy(results, [(r) => r.grantedTxp], ['desc'])
+function getGenerateOutputString(results: Array<DistributionResultDTO>): string {
+    return _.orderBy(results, [(r) => r.grantedTxp], [`desc`])
         .map((r) => `${r.playerLogin}»${r.grantedTxp}txp+(T${r.grantedPerfPartTier})`)
-        .join(" ");
+        .join(` `);
 }
 
 /*
@@ -86,18 +93,4 @@ function calculateExtraTxp(multipiler: number, noOfPlayers: number, position: nu
 */
 function calculatePartDropTier(multipiler: number): number {
     return Math.min(3, Math.floor(1 + Math.random() * multipiler));
-}
-
-class RaceParams {
-    txpMultipiler: number;
-    perfPartFindMultipiler: number;
-    noOfPlayers: number;
-};
-
-class DistributionResult {
-    playerLogin: string;
-    grantedTxp: number;
-    grantedPerfPartVendor: string;
-    grantedPerfPartTier: number;
-    grantedPerfPartType: string;
 }

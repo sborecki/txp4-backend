@@ -6,7 +6,6 @@ import * as masterRouter from './api/routes/master-router';
 import pageNotFoundHandler from './middlewares/page-not-found-handler';
 import renderSinglePageApplicationHandler from './middlewares/render-single-page-application-handler';
 
-
 export default class Bootstrapper {
     private application: express.Application;
     private port: number;
@@ -31,7 +30,7 @@ export default class Bootstrapper {
         this.port = 9090;
         this.application.set('view engine', 'pug');
         this.application.use(helmet());
-        this.application.use(bodyParser.json())
+        this.application.use(bodyParser.json());
     }
 
     private initDatabase(): void {

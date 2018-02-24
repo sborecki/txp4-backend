@@ -4,68 +4,69 @@ import { IPerfPartModel } from './perf-part-model-interface';
 const perfPartSchema: mongoose.Schema = new mongoose.Schema({
     vendor: {
         type: String,
-        enum: ['Sebb. Co.', 'Poziofon Technologies', 'byZio Industries', 'Botaker Systems', 'KemotiumOre', 'Kamyl&Bugz'],
-        required: true
+        enum: ['Sebb. Co.', 'Poziofon Technologies', 'byZio Industries',
+            'Botaker Systems', 'KemotiumOre', 'Kamyl&Bugz'],
+        required: true,
     },
     perfparttype: {
         type: String,
         enum: ['engine', 'transmission', 'tires'],
-        required: true
+        required: true,
     },
     tier: {
         type: Number,
         min: 1,
         max: 3,
-        required: true
+        required: true,
     },
     imageUri: {
-        type: String
+        type: String,
     },
     maxspeed: {
         type: Number,
         default: 0,
-        required: true
+        required: true,
     },
     accel: {
         type: Number,
         default: 0,
-        required: true
+        required: true,
     },
     steering: {
         type: Number,
         default: 0,
-        required: true
+        required: true,
     },
     breaking: {
         type: Number,
         default: 0,
-        required: true
+        required: true,
     },
     turboaccel: {
         type: Number,
         default: 0,
-        required: true
+        required: true,
     },
     turbodur: {
         type: Number,
         default: 0,
-        required: true
+        required: true,
     },
     driftairdecel: {
         type: Number,
         default: 0,
-        required: true
+        required: true,
     },
     grav: {
         type: Number,
         default: 0,
-        required: true
+        required: true,
     },
     waterbounce: {
         type: Number,
         default: 0,
-        required: true
-    }
+        required: true,
+    },
 });
 
 const model: mongoose.Model<IPerfPartModel> = mongoose.model('PerfParts', perfPartSchema);

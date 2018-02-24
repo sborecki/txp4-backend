@@ -1,13 +1,9 @@
-﻿export interface RaceResultsDTO {
-    environment: string,
-    authorTime: number,
-    perfPartFindMultipiler: number,
-    txpPointsMultipiler: number,
-    results: RacePositionDTO[]
-}
+﻿import { RacePositionDTO } from './race-position-dto';
 
-export interface RacePositionDTO {
-    playerLogin: string,
-    position: number,
-    time: number
+export class RaceResultsDTO {
+    public environment: string;
+    public authorTime: number;
+    public perfPartFindMultipiler: number;
+    public txpPointsMultipiler: number;
+    public results: RacePositionDTO[];
 }

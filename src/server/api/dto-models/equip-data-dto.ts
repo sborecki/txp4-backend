@@ -1,4 +1,4 @@
-﻿export interface EquipDataDTO {
-    targetSlotId: number;
-    sourcePerfPartIndex: number;
+﻿export class EquipDataDTO {
+    public targetSlotId: number;
+    public sourcePerfPartIndex: number;
 }

@@ -1,4 +1,4 @@
-﻿import { Document } from "mongoose";
-import { IPlayer } from "./player-interface";
+﻿import { Document } from 'mongoose';
+import { IPlayer } from './player-interface';
 
-export interface IPlayerModel extends IPlayer, Document {}
+export interface IPlayerModel extends IPlayer, Document { }
