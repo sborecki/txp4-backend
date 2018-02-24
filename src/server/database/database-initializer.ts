@@ -12,7 +12,11 @@ export default function initDatabase(): void {
 }
 
 function getDatabaseConnectionString(): string {
-    return `mongodb://txpapi:${getPassword()}@${getHost()}:${getPort()}/txpdb`;
+    if (process.env.ENV_MONGODB !== undefined) {
+        return process.env.ENV_MONGODB;
+    } else {
+        return `mongodb://txpapi:${getPassword()}@${getHost()}:${getPort()}/txpdb`;
+    }
 }
 
 function getPassword(): string {
