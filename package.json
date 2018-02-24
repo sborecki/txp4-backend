@@ -1,9 +1,9 @@
 {
   "name": "txp4",
   "version": "0.0.1",
-  "description": "TrackMania Experience v4",
+  "description": "TrackMania Experience v4 - Backend component",
   "main": "index.js",
-  "repository": "https://github.com/kamsac/txp4.git",
+  "repository": "https://github.com/sborecki/txp4-backend.git",
   "license": "MIT",
   "scripts": {
     "start": "yarn start:watch",

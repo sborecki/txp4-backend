@@ -5,15 +5,12 @@ vs2017.njsproj
 vs2017/
 bin/
 obj/
-
+build/
+node_modules/
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-build
-
-node_modules
 
 .npm
 .yarn-integrity
