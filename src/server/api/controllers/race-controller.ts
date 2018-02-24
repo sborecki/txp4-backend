@@ -9,7 +9,8 @@ import { IPlayerModel } from '../models/player-model-interface';
 import { IPerfPartModel } from 'src/server/api/models/perf-part-model-interface';
 
 export function onRaceEnd(request: express.Request, response: express.Response): void {
-    Q(getDistributePointsPromise(request.body))
+    const updatePromises: Q.Promise<DistributionResult>[] = getDistributePointsPromise(request.body);
+    Q.all(updatePromises)
         .then(function (results: DistributionResult[]) {
             const output: string = getGenerateOutputString(results);
             response.send({ msg: output });
@@ -20,7 +21,7 @@ export function onRaceEnd(request: express.Request, response: express.Response):
         .done();
 }
 
-async function getDistributePointsPromise(raceResults: RaceResultsDTO): Promise<DistributionResult[]> {
+function getDistributePointsPromise(raceResults: RaceResultsDTO): Q.Promise<DistributionResult>[] {
     var raceParams: RaceParams = new RaceParams();
     raceParams.txpMultipiler = Math.max(0, (raceResults.txpPointsMultipiler !== undefined ? raceResults.txpPointsMultipiler : 1));
     raceParams.perfPartFindMultipiler = Math.max(1, (raceResults.perfPartFindMultipiler !== undefined ? raceResults.perfPartFindMultipiler : 1));
@@ -28,16 +29,12 @@ async function getDistributePointsPromise(raceResults: RaceResultsDTO): Promise<
 
     var updatePromises: Q.Promise<DistributionResult>[] = [];
     for (const raceResult of raceResults.results) {
-        var deferred: Q.Deferred<DistributionResult> = Q.defer();
-        getUpdatePlayerPromise(raceResult, raceParams, function (distributionResult: DistributionResult) {
-            deferred.resolve(distributionResult);
-        });
-        updatePromises.push(deferred.promise);
+        updatePromises.push(getUpdatePlayerPromise(raceResult, raceParams));
     }
-    return Q.all(updatePromises);
+    return updatePromises;
 }
 
-async function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams: RaceParams, next): Promise<DistributionResult> {
+function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams: RaceParams): Q.Promise<DistributionResult> {
     var player: IPlayerModel;
     var tier: number;
     return Q(PlayerModel.findOne({ playerlogin: racePosition.playerLogin }).exec())
@@ -66,8 +63,8 @@ async function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams:
 }
 
 function getGenerateOutputString(results: DistributionResult[]): string {
-    return _.sortBy(results, [(r) => r.grantedTxp])
-        .map((r) => r.playerLogin + "+" + r.grantedTxp + "txp+(" + r.grantedPerfPartTier + ")")
+    return _.orderBy(results, [(r) => r.grantedTxp], ['desc'])
+        .map((r) => `${r.playerLogin}»${r.grantedTxp}txp+(T${r.grantedPerfPartTier})`)
         .join(" ");
 }
 
