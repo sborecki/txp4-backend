@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn start:watch",
-    "start:watch": "concurrently --kill-others-on-fail --prefix \"[{name}]\" --names \"TS,HTTP\" --prefix-colors \"bgBlue.bold,bgMagenta.bold\" \"tsc\" \"nodemon ./build/server/index.js\"",
+    "start:watch": "node ./build/server/index.js",
     "build": "yarn build:server",
     "build:watch": "yarn build:server:watch",
     "build:server": "tsc",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "co": "^4.6.0",
+    "concurrently": "^3.5.1",
     "express": "^4.16.2",
     "helmet": "^3.11.0",
     "lodash": "^4.17.5",
