@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn start:watch",
-    "start:watch": "node ./build/server/index.js",
+    "start:watch": "tsc && node ./build/server/index.js",
     "build": "yarn build:server",
     "build:watch": "yarn build:server:watch",
     "build:server": "tsc",
