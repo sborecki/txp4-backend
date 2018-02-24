@@ -6,8 +6,7 @@
     "repository": "https://github.com/sborecki/txp4-backend.git",
     "license": "MIT",
     "scripts": {
-        "start": "node /build/server/index.js",
-        "postinstall": "yarn run build",
+        "start": "./node_modules/.bin/tsc --module commonjs --outDir build/ --noImplicitAny --sourceMap --target ES6 lib/index.ts && node build/server/index.js",
         "startloc": "yarn startloc:watch",
         "startloc:watch": "tsc && node ./build/server/index.js",
         "build": "yarn build:server",
@@ -22,23 +21,12 @@
         "test:watch": "echo \"No tests yet. :( && exit 1\""
     },
     "dependencies": {
-        "co": "^4.6.0",
         "express": "^4.16.2",
         "helmet": "^3.11.0",
         "lodash": "^4.17.5",
         "mongoose": "^5.0.5",
         "pug": "^2.0.0-rc.4",
         "q": "^1.5.1",
-        "@types/express": "^4.11.1",
-        "@types/helmet": "^0.0.37",
-        "@types/node": "^9.4.5",
-        "@types/mongoose": "^5.0.2",
-        "@types/lodash": "^4.14.104",
-        "@types/q": "^1.0.7",
-        "chokidar-cli": "^1.2.0",
-        "concurrently": "^3.5.1",
-        "nodemon": "^1.14.12",
-        "tslint": "^5.9.1",
         "typescript": "^2.7.1"
     },
     "devDependencies": {
