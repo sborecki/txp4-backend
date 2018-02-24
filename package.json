@@ -7,18 +7,39 @@
     "license": "MIT",
     "scripts": {
         "start": "node /build/server/index.js",
-        "build": "tsc",
-        "postinstall": "yarn run build"
+        "postinstall": "yarn run build",
+        "startloc": "yarn startloc:watch",
+        "startloc:watch": "tsc && node ./build/server/index.js",
+        "build": "yarn build:server",
+        "build:watch": "yarn build:server:watch",
+        "build:server": "tsc",
+        "build:server:watch": "tsc -w",
+        "build:client": "exit 0",
+        "build:client:watch": "exit 0",
+        "lint": "tslint src/server/**/*.ts --format \"msbuild\"",
+        "lint:watch": "yarn lint & chokidar \"src/server/**/*.ts\" --command \"yarn lint\"",
+        "test": "echo \"No tests yet. :( && exit 1\"",
+        "test:watch": "echo \"No tests yet. :( && exit 1\""
     },
     "dependencies": {
         "co": "^4.6.0",
-        "concurrently": "^3.5.1",
         "express": "^4.16.2",
         "helmet": "^3.11.0",
         "lodash": "^4.17.5",
         "mongoose": "^5.0.5",
         "pug": "^2.0.0-rc.4",
-        "q": "^1.5.1"
+        "q": "^1.5.1",
+        "@types/express": "^4.11.1",
+        "@types/helmet": "^0.0.37",
+        "@types/node": "^9.4.5",
+        "@types/mongoose": "^5.0.2",
+        "@types/lodash": "^4.14.104",
+        "@types/q": "^1.0.7",
+        "chokidar-cli": "^1.2.0",
+        "concurrently": "^3.5.1",
+        "nodemon": "^1.14.12",
+        "tslint": "^5.9.1",
+        "typescript": "^2.7.1"
     },
     "devDependencies": {
         "@types/express": "^4.11.1",
