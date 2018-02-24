@@ -6,7 +6,7 @@
     "repository": "https://github.com/sborecki/txp4-backend.git",
     "license": "MIT",
     "scripts": {
-        "start": "./node_modules/.bin/tsc --module commonjs --outDir build/server --noImplicitAny --sourceMap --target ES6 src/server/index.ts && node build/server/index.js",
+        "start": "./node_modules/.bin/tsc --module commonjs --moduleResultion Node --outDir build/server --sourceMap --target ES6 src/server/index.ts && node build/server/index.js",
         "startloc": "yarn startloc:watch",
         "startloc:watch": "tsc && node ./build/server/index.js",
         "build": "yarn build:server",
