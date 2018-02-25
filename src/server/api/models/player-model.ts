@@ -16,18 +16,22 @@ const playerSchema: mongoose.Schema = new mongoose.Schema({
     slot1: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PerfParts',
+        default: null,
     },
     slot2: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PerfParts',
+        default: null,
     },
     slot3: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PerfParts',
+        default: null,
     },
     inventory: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'PerfParts',
+        default: [],
     },
 });
 

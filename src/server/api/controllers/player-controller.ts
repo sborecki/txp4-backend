@@ -157,12 +157,3 @@ async function applyEquipToDocument(player: IPlayerModel, equipData: EquipDataDT
     }
     return player;
 }
-
-export function resetAll(request: express.Request, response: express.Response): void {
-    PlayerModel.update({}, { txp: 0, slot1: null, slot2: null, slot3: null, inventory: [] }, function(error: any) {
-        if (error) {
-            response.send(error);
-        }
-        response.sendStatus(200);
-    });
-}

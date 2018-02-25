@@ -1,16 +1,29 @@
 ﻿# After successful mongoDB installation please open mongoDB shell and create any user/password, for example:
 
 use txppdb
-db.createUser({user: "txpapi", pwd: "txp", roles: [{role: "dbAdmin", db: "txpdb"}]})
+db.createUser({user: "txpapi", pwd: "PLEASE_PROVIDE_YOUR_PASSWORD", roles: [{role: "dbAdmin", db: "txpdb"}]})
 
-# You can use any password and host. However user, role and db must be "txpapi", "dbAdmin" and "txpdb" respectively.
+# You can use any password. However user, role and db must be "txpapi", "dbAdmin" and "txpdb" respectively.
 # Next, please set following environment variables:
 # ENV_MONGODB_PASSWORD
 # ENV_MONGODB_HOST
 # ENV_MONGODB_PORT
-# If not set app will use default connection string "mongodb://txp:txp@localhost:27017/txpdb".
+# If not set app will use default connection string "mongodb://txp:PLEASE_PROVIDE_YOUR_PASSWORD@localhost:27017/txpdb".
 #
-# Finally paste this data into collection perfParts:
+# Finally paste this commands into mongo db shell to create required collections.
+# Collection sessions:
+
+use txpdb
+db.createCollection('sessions',{capped: true, limit:1})
+db.sessions.insert(
+{
+    "raceCount": 0,
+    "txpMultipiler": 1,
+    "perfPartRarityMultipiler": 1
+}
+);
+
+# Collection perfParts:
 
 use txpdb
 db.perfparts.insertMany(
