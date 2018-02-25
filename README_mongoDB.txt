@@ -14,7 +14,7 @@ db.createUser({user: "txpapi", pwd: "PLEASE_PROVIDE_YOUR_PASSWORD", roles: [{rol
 # Collection sessions:
 
 use txpdb
-db.createCollection('sessions',{capped: true, limit:1})
+db.createCollection('sessions', {capped: true, limit:1})
 db.sessions.insert(
 {
     "raceCount": 0,
@@ -40,7 +40,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -54,7 +55,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -68,7 +70,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -82,7 +85,8 @@ db.perfparts.insertMany(
 		"turbodur": -5,
 		"driftairdecel": -10,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -96,7 +100,8 @@ db.perfparts.insertMany(
 		"turbodur": -15,
 		"driftairdecel": -30,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -110,7 +115,8 @@ db.perfparts.insertMany(
 		"turbodur": -30,
 		"driftairdecel": -65,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -124,7 +130,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -138,7 +145,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -152,7 +160,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -166,7 +175,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": -10,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -180,7 +190,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": -20,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -194,7 +205,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": -35,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -208,7 +220,8 @@ db.perfparts.insertMany(
 		"turbodur": 10,
 		"driftairdecel": 0,
 		"grav": 15,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -222,7 +235,8 @@ db.perfparts.insertMany(
 		"turbodur": 20,
 		"driftairdecel": 0,
 		"grav": 35,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -236,7 +250,8 @@ db.perfparts.insertMany(
 		"turbodur": 35,
 		"driftairdecel": 0,
 		"grav": 80,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "engine",
@@ -250,7 +265,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 75
+		"waterbounce": 75,
+		"perfpartrarity": 15
 	},
 	{
 		"perfparttype": "engine",
@@ -264,7 +280,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 150
+		"waterbounce": 150,
+		"perfpartrarity": 30
 	},
 	{
 		"perfparttype": "engine",
@@ -278,7 +295,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 300
+		"waterbounce": 300,
+		"perfpartrarity": 60
 	},
 	{
 		"perfparttype": "transmission",
@@ -292,7 +310,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -306,7 +325,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -320,7 +340,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -334,7 +355,8 @@ db.perfparts.insertMany(
 		"turbodur": -2,
 		"driftairdecel": -5,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -348,7 +370,8 @@ db.perfparts.insertMany(
 		"turbodur": -5,
 		"driftairdecel": -15,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -362,7 +385,8 @@ db.perfparts.insertMany(
 		"turbodur": -10,
 		"driftairdecel": -30,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -376,7 +400,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -390,7 +415,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -404,7 +430,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -418,7 +445,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": -5,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -432,7 +460,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": -10,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -446,7 +475,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": -18,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -460,7 +490,8 @@ db.perfparts.insertMany(
 		"turbodur": 5,
 		"driftairdecel": 0,
 		"grav": 8,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -474,7 +505,8 @@ db.perfparts.insertMany(
 		"turbodur": 10,
 		"driftairdecel": 0,
 		"grav": 15,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -488,7 +520,8 @@ db.perfparts.insertMany(
 		"turbodur": 18,
 		"driftairdecel": 0,
 		"grav": 40,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "transmission",
@@ -502,7 +535,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 35
+		"waterbounce": 35,
+		"perfpartrarity": 8
 	},
 	{
 		"perfparttype": "transmission",
@@ -516,7 +550,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 75
+		"waterbounce": 75,
+		"perfpartrarity": 15
 	},
 	{
 		"perfparttype": "transmission",
@@ -530,7 +565,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 150
+		"waterbounce": 150,
+		"perfpartrarity": 30
 	},
 	{
 		"perfparttype": "tires",
@@ -544,7 +580,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -558,7 +595,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -572,7 +610,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -586,7 +625,8 @@ db.perfparts.insertMany(
 		"turbodur": -2,
 		"driftairdecel": -5,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -600,7 +640,8 @@ db.perfparts.insertMany(
 		"turbodur": -5,
 		"driftairdecel": -15,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -614,7 +655,8 @@ db.perfparts.insertMany(
 		"turbodur": -10,
 		"driftairdecel": -30,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -628,7 +670,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -642,7 +685,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -656,7 +700,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -670,7 +715,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": -5,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -684,7 +730,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": -10,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -698,7 +745,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": -18,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -712,7 +760,8 @@ db.perfparts.insertMany(
 		"turbodur": 10,
 		"driftairdecel": 0,
 		"grav": 8,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -726,7 +775,8 @@ db.perfparts.insertMany(
 		"turbodur": 20,
 		"driftairdecel": 0,
 		"grav": 15,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -740,7 +790,8 @@ db.perfparts.insertMany(
 		"turbodur": 35,
 		"driftairdecel": 0,
 		"grav": 40,
-		"waterbounce": 0
+		"waterbounce": 0,
+		"perfpartrarity": 0
 	},
 	{
 		"perfparttype": "tires",
@@ -754,7 +805,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 25
+		"waterbounce": 25,
+		"perfpartrarity": 5
 	},
 	{
 		"perfparttype": "tires",
@@ -768,7 +820,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 60
+		"waterbounce": 60,
+		"perfpartrarity": 12
 	},
 	{
 		"perfparttype": "tires",
@@ -782,7 +835,8 @@ db.perfparts.insertMany(
 		"turbodur": 0,
 		"driftairdecel": 0,
 		"grav": 0,
-		"waterbounce": 120
+		"waterbounce": 120,
+		"perfpartrarity": 24
 	}
 ]
 );

@@ -1,5 +1,5 @@
 ﻿export class RaceParamsDTO {
     public txpMultipiler: number;
-    public perfPartFindMultipiler: number;
+    public raceCountForPerfPartRarity: number;
     public noOfPlayers: number;
 }

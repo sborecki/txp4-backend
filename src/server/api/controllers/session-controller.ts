@@ -27,7 +27,7 @@ export function setTxpMultipiler(request: express.Request, response: express.Res
 }
 
 export function setPerfPartRarityMultipiler(request: express.Request, response: express.Response): void {
-    const multipiler = Math.max(1, request.params.multipiler);
+    const multipiler = Math.max(0, request.params.multipiler);
     SessionModel.updateOne({ perfPartRarityMultipiler: multipiler }, function (error: any, session: ISessionModel) {
         if (error) {
             response.send(error);
