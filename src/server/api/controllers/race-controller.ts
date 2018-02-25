@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import * as PlayerModel from '../models/player-model';
 import { IPlayerModel } from '../models/player-model-interface';
 import * as PerfPartModel from '../models/perf-part-model';
-import { IPerfPartModel } from '../models/perf-part-model-interface';
+import { IPerfPart } from '../models/perf-part-interface';
 import * as SessionModel from '../models/session-model';
 import { ISessionModel } from '../models/session-model-interface';
 import { RaceResultsDTO } from '../dto-models/race-results-dto';
@@ -46,18 +46,33 @@ function getDistributePointsPromise(raceResults: RaceResultsDTO, session: ISessi
 
 function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams: RaceParamsDTO): Q.Promise<DistributionResultDTO> {
     let player: IPlayerModel;
+    let slot1: IPerfPart;
+    let slot2: IPerfPart;
+    let slot3: IPerfPart;
     let tier: number;
     return Q(PlayerModel.findOne({ playerlogin: racePosition.playerLogin }).exec())
         .then(function(foundPlayer: IPlayerModel) {
             player = foundPlayer;
-            tier = calculatePartDropTier(raceParams.raceCountForPerfPartRarity);
+            return PerfPartModel.findById(player.slot1).exec();
+        })
+        .then(function (foundPerfPart: IPerfPart) {
+            slot1 = foundPerfPart;
+            return PerfPartModel.findById(player.slot2).exec();
+        })
+        .then(function (foundPerfPart: IPerfPart) {
+            slot2 = foundPerfPart;
+            return PerfPartModel.findById(player.slot3).exec();
+        })
+        .then(function (foundPerfPart: IPerfPart) {
+            slot3 = foundPerfPart;
+            tier = getPerfPartTier(raceParams.raceCountForPerfPartRarity, [slot1, slot2, slot3]);
             return PerfPartModel.count({ tier: tier }).exec();
         })
         .then(function(perfPartsNo: number) {
             const random = Math.floor(Math.random() * perfPartsNo);
             return PerfPartModel.findOne({ tier: tier }).skip(random).exec();
         })
-        .then(function(randomPerfPart: IPerfPartModel) {
+        .then(function(randomPerfPart: IPerfPart) {
             const result: DistributionResultDTO = new DistributionResultDTO();
             result.playerLogin = player.playerlogin;
             result.grantedTxp = calculateExtraTxp(raceParams.txpMultipiler, raceParams.noOfPlayers, racePosition.position);
@@ -70,6 +85,16 @@ function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams: RaceP
             player.save();
             return result;
         });
+}
+
+function getPerfPartTier(raceCountForPerfPartRarity: number, slots: IPerfPart[]): number {
+    const playerExtraPerfPartRarity: number = _.chain(slots)
+        .filter((s) => s != null)
+        .map((s) => s.perfpartrarity)
+        .sum()
+        .value();
+    const totalPerfPartRarity = raceCountForPerfPartRarity * (1 + (playerExtraPerfPartRarity / 100));
+    return calculatePartDropTier(totalPerfPartRarity);
 }
 
 function getGenerateOutputString(results: Array<DistributionResultDTO>): string {

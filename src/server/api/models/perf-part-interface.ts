@@ -15,4 +15,5 @@ export interface IPerfPart {
     driftairdecel: number;
     grav: number;
     waterbounce: number;
+    perfpartrarity: number;
 }

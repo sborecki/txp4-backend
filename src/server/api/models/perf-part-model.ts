@@ -67,6 +67,11 @@ const perfPartSchema: mongoose.Schema = new mongoose.Schema({
         default: 0,
         required: true,
     },
+    perfpartrarity: {
+        type: Number,
+        default: 0,
+        required: true,
+    },
 });
 
 const model: mongoose.Model<IPerfPartModel> = mongoose.model('PerfParts', perfPartSchema);
