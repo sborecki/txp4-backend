@@ -20,7 +20,7 @@ export default class Bootstrapper {
     }
 
     public start(): void {
-        this.application.listen(process.env.PORT || this.port, () => {
+        this.application.listen(this.port, () => {
             // tslint:disable-next-line:no-console
             console.log(`Application is running at http://localhost:${this.port}.`);
         });

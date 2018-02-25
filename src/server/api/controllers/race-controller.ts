@@ -14,7 +14,7 @@ import { IPerfPartModel } from 'src/server/api/models/perf-part-model-interface'
 export function onRaceEnd(request: express.Request, response: express.Response): void {
     const updatePromises: Array<Q.Promise<DistributionResultDTO>> = getDistributePointsPromise(request.body);
     Q.all(updatePromises)
-        .then(function(results: Array<DistributionResultDTO>) {
+        .then(function(results: DistributionResultDTO[]) {
             const output: string = getGenerateOutputString(results);
             response.send({ msg: output });
         })

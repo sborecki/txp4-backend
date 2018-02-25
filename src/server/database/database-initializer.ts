@@ -1,13 +1,14 @@
 import * as mongoose from 'mongoose';
 
 export default function initDatabase(): void {
-    mongoose.connect(getDatabaseConnectionString());
+    const connectionString: string = getDatabaseConnectionString();
+    mongoose.connect(connectionString);
     const db: mongoose.Connection = mongoose.connection;
     // tslint:disable-next-line:no-console
     db.on('error', console.error.bind(console, `MongoDB: connection error:`));
     db.once('open', function() {
         // tslint:disable-next-line:no-console
-        console.log(`Successfully connected to MongoDB database`);
+        console.log(`Successfully connected to MongoDB database at ${getHost()}:${getPort()}`);
     });
 }
 

@@ -1,4 +1,5 @@
 ﻿export class StatModelDTO {
+    public playerLogin: string;
     public maxspeed: number;
     public accel: number;
     public steering: number;

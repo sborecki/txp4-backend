@@ -10,6 +10,15 @@ import { IPlayerModel } from '../models/player-model-interface';
 import { IPerfPart } from '../models/perf-part-interface';
 import { IPlayer } from '../models/player-interface';
 
+export function getAllPlayers(request: express.Request, response: express.Response): void {
+    PlayerModel.find(function (error: any, players: IPlayerModel[]) {
+        if (error) {
+            response.send(error);
+        }
+        response.json(players);
+    });
+}
+
 export function getOrCreatePlayer(request: express.Request, response: express.Response): void {
     PlayerModel.findOne({ playerlogin: request.params.playerLogin }, function(error: any, player: IPlayerModel) {
         if (player == null) {
@@ -39,28 +48,28 @@ export function deletePlayer(request: express.Request, response: express.Respons
     });
 }
 
+export function getAllStats(request: express.Request, response: express.Response): void {
+    
+    Q(PlayerModel.find())
+        .then(function(players: IPlayer[]) {
+            const getStatsPromises: Array<Q.Promise<StatModelDTO>> = new Array<Q.Promise<StatModelDTO>>();
+            for (const player of players) {
+                getStatsPromises.push(getPlayerStats(player.playerlogin));
+            }
+            return Q.all(getStatsPromises);
+        })
+        .then(function(statModels: StatModelDTO[]) {
+            response.send(statModels);
+        })
+        .catch(function (error: any) {
+            response.send(error);
+        })
+        .done();
+}
+
 export function getStats(request: express.Request, response: express.Response): void {
-    let player: IPlayer;
-    let slot1: IPerfPart;
-    let slot2: IPerfPart;
-    let slot3: IPerfPart;
-    Q(PlayerModel.findOne({ playerlogin: request.params.playerLogin }).exec())
-        .then(function(foundPlayer: IPlayer) {
-            player = foundPlayer;
-            return PerfPartModel.findById(player.slot1).exec();
-        })
-        .then(function(foundPerfPart: IPerfPart) {
-            slot1 = foundPerfPart;
-            return PerfPartModel.findById(player.slot2).exec();
-        })
-        .then(function(foundPerfPart: IPerfPart) {
-            slot2 = foundPerfPart;
-            return PerfPartModel.findById(player.slot3).exec();
-        })
-        .then(function(foundPerfPart: IPerfPart) {
-            slot3 = foundPerfPart;
-            const slots = _.chain([slot1, slot2, slot3]).filter((s) => s != null).value();
-            const statModel: StatModelDTO = getCombinedStats(slots);
+    Q(getPlayerStats(request.params.playerLogin))
+        .then(function(statModel: StatModelDTO) {
             response.send(statModel);
         })
         .catch(function(error: any) {
@@ -69,8 +78,35 @@ export function getStats(request: express.Request, response: express.Response): 
         .done();
 }
 
-function getCombinedStats(slots: IPerfPart[]): StatModelDTO {
+function getPlayerStats(playerLogin): Q.Promise<StatModelDTO> {
+    let player: IPlayer;
+    let slot1: IPerfPart;
+    let slot2: IPerfPart;
+    let slot3: IPerfPart;
+    return Q(PlayerModel.findOne({ playerlogin: playerLogin }).exec())
+        .then(function (foundPlayer: IPlayer) {
+            player = foundPlayer;
+            return PerfPartModel.findById(player.slot1).exec();
+        })
+        .then(function (foundPerfPart: IPerfPart) {
+            slot1 = foundPerfPart;
+            return PerfPartModel.findById(player.slot2).exec();
+        })
+        .then(function (foundPerfPart: IPerfPart) {
+            slot2 = foundPerfPart;
+            return PerfPartModel.findById(player.slot3).exec();
+        })
+        .then(function (foundPerfPart: IPerfPart) {
+            slot3 = foundPerfPart;
+            const slots = _.chain([slot1, slot2, slot3]).filter((s) => s != null).value();
+            const statModel: StatModelDTO = getCombinedStats(player.playerlogin, slots);
+            return statModel;
+        });
+}
+
+function getCombinedStats(playerLogin: string, slots: IPerfPart[]): StatModelDTO {
     const statModel: StatModelDTO = new StatModelDTO();
+    statModel.playerLogin = playerLogin;
     statModel.accel = _.chain(slots).map((s) => s.accel).sum().value();
     statModel.breaking = _.chain(slots).map((s) => s.breaking).sum().value();
     statModel.driftairdecel = _.chain(slots).map((s) => s.driftairdecel).sum().value();
