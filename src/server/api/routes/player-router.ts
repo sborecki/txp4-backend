@@ -3,10 +3,6 @@ import * as controller from '../controllers/player-controller';
 
 const router: express.Router = express.Router();
 
-//TODO: move to session
-//router.route('/')
-//    .delete(controller.resetAll);
-
 router.route('/get')
     .get(controller.getAllPlayers);
 
