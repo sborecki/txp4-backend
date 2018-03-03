@@ -114,13 +114,11 @@ function getCombinedStats(playerLogin: string, slots: IPerfPart[]): StatModelDTO
     statModel.playerLogin = playerLogin;
     statModel.accel = getStatMultipiler(slots, (s) => s.accel);
     statModel.breaking = getStatMultipiler(slots, (s) => s.breaking);
-    statModel.driftairdecel = getStatMultipiler(slots, (s) => s.driftairdecel);
     statModel.grav = getStatMultipiler(slots, (s) => s.grav);
+    statModel.grip = getStatMultipiler(slots, (s) => s.grip);
     statModel.maxspeed = getStatMultipiler(slots, (s) => s.maxspeed);
     statModel.steering = getStatMultipiler(slots, (s) => s.steering);
-    statModel.turboaccel = getStatMultipiler(slots, (s) => s.turboaccel);
-    statModel.turbodur = getStatMultipiler(slots, (s) => s.turbodur);
-    statModel.waterbounce = getStatMultipiler(slots, (s) => s.waterbounce);
+    statModel.turbostrength = getStatMultipiler(slots, (s) => s.turbostrength);
     return statModel;
 }
 

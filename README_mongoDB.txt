@@ -36,11 +36,9 @@ db.perfparts.insertMany(
 		"accel": 15,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -51,11 +49,9 @@ db.perfparts.insertMany(
 		"accel": 22,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -66,11 +62,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -81,11 +75,9 @@ db.perfparts.insertMany(
 		"accel": 15,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": -10,
-		"turbodur": -5,
-		"driftairdecel": -10,
+		"turbostrength": -10,
+		"grip": -10,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -96,11 +88,9 @@ db.perfparts.insertMany(
 		"accel": 22,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": -30,
-		"turbodur": -15,
-		"driftairdecel": -30,
+		"turbostrength": -30,
+		"grip": -30,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -111,11 +101,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": -60,
-		"turbodur": -30,
-		"driftairdecel": -65,
+		"turbostrength": -60,
+		"grip": -65,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -126,11 +114,9 @@ db.perfparts.insertMany(
 		"accel": 15,
 		"steering": 5,
 		"breaking": 10,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -141,11 +127,9 @@ db.perfparts.insertMany(
 		"accel": 22,
 		"steering": 10,
 		"breaking": 25,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -156,11 +140,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": 20,
 		"breaking": 50,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -171,11 +153,9 @@ db.perfparts.insertMany(
 		"accel": 20,
 		"steering": 0,
 		"breaking": -5,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": -10,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -186,11 +166,9 @@ db.perfparts.insertMany(
 		"accel": 35,
 		"steering": 0,
 		"breaking": -15,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": -20,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -201,11 +179,9 @@ db.perfparts.insertMany(
 		"accel": 55,
 		"steering": 0,
 		"breaking": -30,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": -35,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -216,11 +192,9 @@ db.perfparts.insertMany(
 		"accel": 15,
 		"steering": -2,
 		"breaking": 0,
-		"turboaccel": 20,
-		"turbodur": 10,
-		"driftairdecel": 0,
+		"turbostrength": 20,
+		"grip": 0,
 		"grav": 15,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -231,11 +205,9 @@ db.perfparts.insertMany(
 		"accel": 22,
 		"steering": -5,
 		"breaking": 0,
-		"turboaccel": 50,
-		"turbodur": 20,
-		"driftairdecel": 0,
+		"turbostrength": 50,
+		"grip": 0,
 		"grav": 35,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -246,11 +218,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": -10,
 		"breaking": 0,
-		"turboaccel": 100,
-		"turbodur": 35,
-		"driftairdecel": 0,
+		"turbostrength": 100,
+		"grip": 0,
 		"grav": 80,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -261,11 +231,9 @@ db.perfparts.insertMany(
 		"accel": 11,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 75,
 		"perfpartrarity": 15
 	},
 	{
@@ -276,11 +244,9 @@ db.perfparts.insertMany(
 		"accel": 16,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 150,
 		"perfpartrarity": 30
 	},
 	{
@@ -291,11 +257,9 @@ db.perfparts.insertMany(
 		"accel": 23,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 300,
 		"perfpartrarity": 60
 	},
 	{
@@ -306,11 +270,9 @@ db.perfparts.insertMany(
 		"accel": 20,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 10,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 10,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -321,11 +283,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 15,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 15,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -336,11 +296,9 @@ db.perfparts.insertMany(
 		"accel": 40,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 20,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 20,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -351,11 +309,9 @@ db.perfparts.insertMany(
 		"accel": 20,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": -2,
-		"driftairdecel": -5,
+		"turbostrength": 0,
+		"grip": -5,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -366,11 +322,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": -5,
-		"driftairdecel": -15,
+		"turbostrength": 0,
+		"grip": -15,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -381,11 +335,9 @@ db.perfparts.insertMany(
 		"accel": 40,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": -10,
-		"driftairdecel": -30,
+		"turbostrength": 0,
+		"grip": -30,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -396,11 +348,9 @@ db.perfparts.insertMany(
 		"accel": 20,
 		"steering": 2,
 		"breaking": 5,
-		"turboaccel": 10,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 10,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -411,11 +361,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": 5,
 		"breaking": 12,
-		"turboaccel": 15,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 15,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -426,11 +374,9 @@ db.perfparts.insertMany(
 		"accel": 40,
 		"steering": 10,
 		"breaking": 25,
-		"turboaccel": 20,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 20,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -441,11 +387,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": 0,
 		"breaking": -2,
-		"turboaccel": 10,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 10,
+		"grip": 0,
 		"grav": -5,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -456,11 +400,9 @@ db.perfparts.insertMany(
 		"accel": 45,
 		"steering": 0,
 		"breaking": -8,
-		"turboaccel": 15,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 15,
+		"grip": 0,
 		"grav": -10,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -471,11 +413,9 @@ db.perfparts.insertMany(
 		"accel": 70,
 		"steering": 0,
 		"breaking": -15,
-		"turboaccel": 20,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 20,
+		"grip": 0,
 		"grav": -18,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -486,11 +426,9 @@ db.perfparts.insertMany(
 		"accel": 20,
 		"steering": -1,
 		"breaking": 0,
-		"turboaccel": 20,
-		"turbodur": 5,
-		"driftairdecel": 0,
+		"turbostrength": 20,
+		"grip": 0,
 		"grav": 8,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -501,11 +439,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": -3,
 		"breaking": 0,
-		"turboaccel": 40,
-		"turbodur": 10,
-		"driftairdecel": 0,
+		"turbostrength": 40,
+		"grip": 0,
 		"grav": 15,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -516,11 +452,9 @@ db.perfparts.insertMany(
 		"accel": 40,
 		"steering": -5,
 		"breaking": 0,
-		"turboaccel": 70,
-		"turbodur": 18,
-		"driftairdecel": 0,
+		"turbostrength": 70,
+		"grip": 0,
 		"grav": 40,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -531,11 +465,9 @@ db.perfparts.insertMany(
 		"accel": 15,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 7,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 7,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 35,
 		"perfpartrarity": 8
 	},
 	{
@@ -546,11 +478,9 @@ db.perfparts.insertMany(
 		"accel": 22,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 11,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 11,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 75,
 		"perfpartrarity": 15
 	},
 	{
@@ -561,11 +491,9 @@ db.perfparts.insertMany(
 		"accel": 30,
 		"steering": 0,
 		"breaking": 0,
-		"turboaccel": 15,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 15,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 150,
 		"perfpartrarity": 30
 	},
 	{
@@ -576,11 +504,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 10,
 		"breaking": 5,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -591,11 +517,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 15,
 		"breaking": 8,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -606,11 +530,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 20,
 		"breaking": 10,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -621,11 +543,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 10,
 		"breaking": 5,
-		"turboaccel": -10,
-		"turbodur": -2,
-		"driftairdecel": -5,
+		"turbostrength": -10,
+		"grip": -5,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -636,11 +556,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 15,
 		"breaking": 8,
-		"turboaccel": -15,
-		"turbodur": -5,
-		"driftairdecel": -15,
+		"turbostrength": -15,
+		"grip": -15,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -651,11 +569,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 20,
 		"breaking": 10,
-		"turboaccel": -20,
-		"turbodur": -10,
-		"driftairdecel": -30,
+		"turbostrength": -20,
+		"grip": -30,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -666,11 +582,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 15,
 		"breaking": 15,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -681,11 +595,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 25,
 		"breaking": 25,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -696,11 +608,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 35,
 		"breaking": 35,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -711,11 +621,9 @@ db.perfparts.insertMany(
 		"accel": 10,
 		"steering": 10,
 		"breaking": 0,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": -5,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -726,11 +634,9 @@ db.perfparts.insertMany(
 		"accel": 15,
 		"steering": 15,
 		"breaking": -5,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": -10,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -741,11 +647,9 @@ db.perfparts.insertMany(
 		"accel": 25,
 		"steering": 20,
 		"breaking": -10,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": -18,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -756,11 +660,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 0,
 		"breaking": 5,
-		"turboaccel": 20,
-		"turbodur": 10,
-		"driftairdecel": 0,
+		"turbostrength": 20,
+		"grip": 0,
 		"grav": 8,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -771,11 +673,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 0,
 		"breaking": 8,
-		"turboaccel": 50,
-		"turbodur": 20,
-		"driftairdecel": 0,
+		"turbostrength": 50,
+		"grip": 0,
 		"grav": 15,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -786,11 +686,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 0,
 		"breaking": 10,
-		"turboaccel": 100,
-		"turbodur": 35,
-		"driftairdecel": 0,
+		"turbostrength": 100,
+		"grip": 0,
 		"grav": 40,
-		"waterbounce": 0,
 		"perfpartrarity": 0
 	},
 	{
@@ -801,11 +699,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 8,
 		"breaking": 3,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 25,
 		"perfpartrarity": 5
 	},
 	{
@@ -816,11 +712,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 11,
 		"breaking": 6,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 60,
 		"perfpartrarity": 12
 	},
 	{
@@ -831,11 +725,9 @@ db.perfparts.insertMany(
 		"accel": 0,
 		"steering": 15,
 		"breaking": 8,
-		"turboaccel": 0,
-		"turbodur": 0,
-		"driftairdecel": 0,
+		"turbostrength": 0,
+		"grip": 0,
 		"grav": 0,
-		"waterbounce": 120,
 		"perfpartrarity": 24
 	}
 ]

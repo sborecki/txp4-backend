@@ -4,9 +4,7 @@
     public accel: number;
     public steering: number;
     public breaking: number;
-    public turboaccel: number;
-    public turbodur: number;
-    public driftairdecel: number;
+    public turbostrength: number;
+    public grip: number;
     public grav: number;
-    public waterbounce: number;
 }

@@ -10,11 +10,9 @@ export interface IPerfPart {
     accel: number;
     steering: number;
     breaking: number;
-    turboaccel: number;
-    turbodur: number;
-    driftairdecel: number;
+    turbostrength: number;
+    grip: number;
     grav: number;
-    waterbounce: number;
     perfpartrarity: number;
 }
 
