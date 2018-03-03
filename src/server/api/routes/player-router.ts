@@ -10,6 +10,9 @@ router.route('/get/:playerLogin')
     .get(controller.getOrCreatePlayer)
     .delete(controller.deletePlayer);
 
+router.route('/getFull/:playerLogin')
+    .get(controller.getFull);
+
 router.route('/stats')
     .get(controller.getAllStats);
 

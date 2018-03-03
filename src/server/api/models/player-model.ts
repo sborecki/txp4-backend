@@ -13,17 +13,17 @@ const playerSchema: mongoose.Schema = new mongoose.Schema({
         default: 0,
         required: true,
     },
-    slot1: {
+    slotengine: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PerfParts',
         default: null,
     },
-    slot2: {
+    slottransmission: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PerfParts',
         default: null,
     },
-    slot3: {
+    slottires: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PerfParts',
         default: null,

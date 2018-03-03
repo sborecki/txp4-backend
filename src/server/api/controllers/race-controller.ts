@@ -46,26 +46,26 @@ function getDistributePointsPromise(raceResults: RaceResultsDTO, session: ISessi
 
 function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams: RaceParamsDTO): Q.Promise<DistributionResultDTO> {
     let player: IPlayerModel;
-    let slot1: IPerfPart;
-    let slot2: IPerfPart;
-    let slot3: IPerfPart;
+    let slotEngine: IPerfPart;
+    let slotTransmission: IPerfPart;
+    let slotTires: IPerfPart;
     let tier: number;
     return Q(PlayerModel.findOne({ playerlogin: racePosition.playerLogin }).exec())
         .then(function(foundPlayer: IPlayerModel) {
             player = foundPlayer;
-            return PerfPartModel.findById(player.slot1).exec();
+            return PerfPartModel.findById(player.slotengine).exec();
         })
         .then(function (foundPerfPart: IPerfPart) {
-            slot1 = foundPerfPart;
-            return PerfPartModel.findById(player.slot2).exec();
+            slotEngine = foundPerfPart;
+            return PerfPartModel.findById(player.slottransmission).exec();
         })
         .then(function (foundPerfPart: IPerfPart) {
-            slot2 = foundPerfPart;
-            return PerfPartModel.findById(player.slot3).exec();
+            slotTransmission = foundPerfPart;
+            return PerfPartModel.findById(player.slottires).exec();
         })
         .then(function (foundPerfPart: IPerfPart) {
-            slot3 = foundPerfPart;
-            tier = getPerfPartTier(raceParams.raceCountForPerfPartRarity, [slot1, slot2, slot3]);
+            slotTires = foundPerfPart;
+            tier = getPerfPartTier(raceParams.raceCountForPerfPartRarity, [slotEngine, slotTransmission, slotTires]);
             return PerfPartModel.count({ tier: tier }).exec();
         })
         .then(function(perfPartsNo: number) {

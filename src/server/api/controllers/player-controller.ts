@@ -9,18 +9,10 @@ import { EquipDataDTO } from '../dto-models/equip-data-dto';
 import { IPlayerModel } from '../models/player-model-interface';
 import { IPerfPart } from '../models/perf-part-interface';
 import { IPlayer } from '../models/player-interface';
-
-export function getAllPlayers(request: express.Request, response: express.Response): void {
-    PlayerModel.find(function (error: any, players: IPlayerModel[]) {
-        if (error) {
-            response.send(error);
-        }
-        response.json(players);
-    });
-}
+import { IPerfPartModel } from '../models/perf-part-model-interface';
 
 export function getOrCreatePlayer(request: express.Request, response: express.Response): void {
-    PlayerModel.findOne({ playerlogin: request.params.playerLogin }, function(error: any, player: IPlayerModel) {
+    PlayerModel.findOne({ playerlogin: request.params.playerLogin }, ['playerlogin', 'txp'], function(error: any, player: IPlayerModel) {
         if (player == null) {
             createPlayer(request.params.playerLogin, response);
         } else {
@@ -30,12 +22,35 @@ export function getOrCreatePlayer(request: express.Request, response: express.Re
 }
 
 function createPlayer(playerLogin: string, response: express.Response): void {
-    const newPlayer: mongoose.Document = new PlayerModel({ playerlogin: playerLogin });
-    newPlayer.save(function(error: any, player: IPlayerModel) {
+    const newPlayer: IPlayerModel = new PlayerModel({ playerlogin: playerLogin });
+    newPlayer.save(function (error: any, player: IPlayerModel) {
         if (error) {
             response.sendStatus(500);
         }
-        response.json(player);
+        response.json({ txp: newPlayer.txp, _id: newPlayer._id, playerlogin: newPlayer.playerlogin });
+    });
+}
+
+export function getAllPlayers(request: express.Request, response: express.Response): void {
+    PlayerModel.find({}, ['playerlogin', 'txp'], function (error: any, players: IPlayerModel[]) {
+        if (error) {
+            response.send(error);
+        }
+        response.json(players);
+    });
+}
+
+export function getFull(request: express.Request, response: express.Response): void {
+    PlayerModel.findOne({ playerlogin: request.params.playerLogin })
+        .populate('slotengine')
+        .populate('slottransmission')
+        .populate('slottires')
+        .populate({path: 'inventory', model: 'PerfParts'})
+        .exec(function (error: any, players: IPlayerModel[]) {
+        if (error) {
+            response.send(error);
+        }
+        response.json(players);
     });
 }
 
@@ -80,25 +95,29 @@ export function getStats(request: express.Request, response: express.Response): 
 
 function getPlayerStats(playerLogin): Q.Promise<StatModelDTO> {
     let player: IPlayer;
-    let slot1: IPerfPart;
-    let slot2: IPerfPart;
-    let slot3: IPerfPart;
-    return Q(PlayerModel.findOne({ playerlogin: playerLogin }).exec())
+    let slotEngine: IPerfPart;
+    let slotTransmission: IPerfPart;
+    let slotTires: IPerfPart;
+    return Q(PlayerModel.findOne({ playerlogin: playerLogin })
+        .populate('slotengine')
+        .populate('slottransmission')
+        .populate('slottires')
+        .exec())
         .then(function (foundPlayer: IPlayer) {
             player = foundPlayer;
-            return PerfPartModel.findById(player.slot1).exec();
+            return PerfPartModel.findById(player.slotengine).exec();
         })
         .then(function (foundPerfPart: IPerfPart) {
-            slot1 = foundPerfPart;
-            return PerfPartModel.findById(player.slot2).exec();
+            slotEngine = foundPerfPart;
+            return PerfPartModel.findById(player.slottransmission).exec();
         })
         .then(function (foundPerfPart: IPerfPart) {
-            slot2 = foundPerfPart;
-            return PerfPartModel.findById(player.slot3).exec();
+            slotTransmission = foundPerfPart;
+            return PerfPartModel.findById(player.slottires).exec();
         })
         .then(function (foundPerfPart: IPerfPart) {
-            slot3 = foundPerfPart;
-            const slots = _.chain([slot1, slot2, slot3]).filter((s) => s != null).value();
+            slotTires = foundPerfPart;
+            const slots = _.chain([slotEngine, slotTransmission, slotTires]).filter((s) => s != null).value();
             const statModel: StatModelDTO = getCombinedStats(player.playerlogin, slots);
             return statModel;
         });
@@ -107,16 +126,20 @@ function getPlayerStats(playerLogin): Q.Promise<StatModelDTO> {
 function getCombinedStats(playerLogin: string, slots: IPerfPart[]): StatModelDTO {
     const statModel: StatModelDTO = new StatModelDTO();
     statModel.playerLogin = playerLogin;
-    statModel.accel = _.chain(slots).map((s) => s.accel).sum().value();
-    statModel.breaking = _.chain(slots).map((s) => s.breaking).sum().value();
-    statModel.driftairdecel = _.chain(slots).map((s) => s.driftairdecel).sum().value();
-    statModel.grav = _.chain(slots).map((s) => s.grav).sum().value();
-    statModel.maxspeed = _.chain(slots).map((s) => s.maxspeed).sum().value();
-    statModel.steering = _.chain(slots).map((s) => s.steering).sum().value();
-    statModel.turboaccel = _.chain(slots).map((s) => s.turboaccel).sum().value();
-    statModel.turbodur = _.chain(slots).map((s) => s.turbodur).sum().value();
-    statModel.waterbounce = _.chain(slots).map((s) => s.waterbounce).sum().value();
+    statModel.accel = getStatMultipiler(slots, (s) => s.accel);
+    statModel.breaking = getStatMultipiler(slots, (s) => s.breaking);
+    statModel.driftairdecel = getStatMultipiler(slots, (s) => s.driftairdecel);
+    statModel.grav = getStatMultipiler(slots, (s) => s.grav);
+    statModel.maxspeed = getStatMultipiler(slots, (s) => s.maxspeed);
+    statModel.steering = getStatMultipiler(slots, (s) => s.steering);
+    statModel.turboaccel = getStatMultipiler(slots, (s) => s.turboaccel);
+    statModel.turbodur = getStatMultipiler(slots, (s) => s.turbodur);
+    statModel.waterbounce = getStatMultipiler(slots, (s) => s.waterbounce);
     return statModel;
+}
+
+function getStatMultipiler(slots: IPerfPart[], getSumElement: (s: IPerfPart) => number): number {
+    return 1 + (_.chain(slots).map(getSumElement).sum().value() / 100);
 }
 
 export function equip(request: express.Request, response: express.Response): void {
@@ -135,25 +158,27 @@ export function equip(request: express.Request, response: express.Response): voi
         .done();
 }
 
-async function applyEquipToDocument(player: IPlayerModel, equipData: EquipDataDTO): Promise<IPlayerModel> {
-    const pulledPerfPartId: mongoose.Schema.Types.ObjectId[] =
-        _.pullAt(player.inventory, [equipData.sourcePerfPartIndex]);
-    player.markModified('inventory'); // _pullAt mutates the source array
-    if (pulledPerfPartId[0] == null) {
-        throw new Error('Part index exceeds player\'s inventory.');
-    }
-    switch (equipData.targetSlotId) {
-        case 1:
-            player.slot1 = pulledPerfPartId[0];
-            break;
-        case 2:
-            player.slot2 = pulledPerfPartId[0];
-            break;
-        case 3:
-            player.slot3 = pulledPerfPartId[0];
-            break;
-        default:
-            throw new Error('Slot must be an integer between 1 and 3');
-    }
-    return player;
+function applyEquipToDocument(player: IPlayerModel, equipData: EquipDataDTO): Q.Promise<IPlayerModel> {
+    return Q(PerfPartModel.findById(player.inventory[equipData.perfPartIndex]))
+        .then(function (perfPart: IPerfPartModel) {
+            if (perfPart == null) {
+                throw new Error('Perf part not found. Most likely index exceeds player\'s inventory size.');
+            }
+            _.pullAt(player.inventory, [equipData.perfPartIndex]); // _pullAt mutates the source array
+            player.markModified('inventory');
+            switch (perfPart.perfparttype) {
+                case 'engine':
+                    player.slotengine = perfPart.id;
+                    break;
+                case 'transmission':
+                    player.slottransmission = perfPart.id;
+                    break;
+                case 'tires':
+                    player.slottires = perfPart.id;
+                    break;
+                default:
+                    throw new Error('Equiped perfPart must be either engine/transmission/tires');
+            }
+            return player;
+        });
 }

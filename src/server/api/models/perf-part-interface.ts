@@ -2,8 +2,8 @@
 
 export interface IPerfPart {
     _id: any;
-    vendor: string;
-    perfparttype: string;
+    vendor: Vendor;
+    perfparttype: PartType;
     tier: number;
     imageUri: string;
     maxspeed: number;
@@ -17,3 +17,6 @@ export interface IPerfPart {
     waterbounce: number;
     perfpartrarity: number;
 }
+
+type PartType = 'engine' | 'transmission' | 'tires';
+type Vendor = 'Sebb. Co.' | 'Poziofon Technologies' | 'byZio Industries' | 'Botaker Systems' | 'KemotiumOre' | 'Kamyl&Bugz';
