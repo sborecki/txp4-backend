@@ -33,6 +33,10 @@ const playerSchema: mongoose.Schema = new mongoose.Schema({
         ref: 'PerfParts',
         default: [],
     },
+    pass: {
+        type: String,
+        lowercase: true,
+    },
 });
 
 const model: mongoose.Model<IPlayerModel> = mongoose.model('Players', playerSchema);

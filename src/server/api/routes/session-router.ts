@@ -7,10 +7,10 @@ router.route('/')
     .get(controller.get)
     .delete(controller.reset);
 
-router.route('/setTxpMultipiler')
+router.route('/set-txp-multipiler')
     .post(controller.setTxpMultipiler);
 
-router.route('/setPerfPartRarity')
+router.route('/set-perf-part-rarity')
     .post(controller.setPerfPartRarityMultipiler);
 
 export = router;

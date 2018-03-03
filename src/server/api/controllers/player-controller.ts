@@ -11,23 +11,12 @@ import { IPerfPart } from '../models/perf-part-interface';
 import { IPlayer } from '../models/player-interface';
 import { IPerfPartModel } from '../models/perf-part-model-interface';
 
-export function getOrCreatePlayer(request: express.Request, response: express.Response): void {
+export function get(request: express.Request, response: express.Response): void {
     PlayerModel.findOne({ playerlogin: request.params.playerLogin }, ['playerlogin', 'txp'], function(error: any, player: IPlayerModel) {
-        if (player == null) {
-            createPlayer(request.params.playerLogin, response);
-        } else {
-            response.json(player);
-        }
-    });
-}
-
-function createPlayer(playerLogin: string, response: express.Response): void {
-    const newPlayer: IPlayerModel = new PlayerModel({ playerlogin: playerLogin });
-    newPlayer.save(function (error: any, player: IPlayerModel) {
         if (error) {
             response.sendStatus(500);
         }
-        response.json({ txp: newPlayer.txp, _id: newPlayer._id, playerlogin: newPlayer.playerlogin });
+        response.json(player);
     });
 }
 
@@ -99,9 +88,6 @@ function getPlayerStats(playerLogin): Q.Promise<StatModelDTO> {
     let slotTransmission: IPerfPart;
     let slotTires: IPerfPart;
     return Q(PlayerModel.findOne({ playerlogin: playerLogin })
-        .populate('slotengine')
-        .populate('slottransmission')
-        .populate('slottires')
         .exec())
         .then(function (foundPlayer: IPlayer) {
             player = foundPlayer;

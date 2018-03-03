@@ -41,7 +41,7 @@ export function setPerfPartRarityMultipiler(request: express.Request, response: 
 
 export function reset(request: express.Request, response: express.Response): void {
     Q.all([
-        PlayerModel.update({}, { txp: 0, slotengine: null, slottransmission: null, slottires: null, inventory: [] }, { multi: true }),
+        PlayerModel.update({}, { txp: 0, slotengine: null, slottransmission: null, slottires: null, inventory: [], pass: null }, { multi: true }),
         SessionModel.updateOne({}, { txpMultipiler: 1, perfPartMultipier: 1, raceCount: 0 })
         ])
         .then(function() {

@@ -8,4 +8,5 @@ export interface IPlayer {
     slottransmission: mongoose.Schema.Types.ObjectId;
     slottires: mongoose.Schema.Types.ObjectId;
     inventory: mongoose.Schema.Types.ObjectId[];
+    pass: string;
 }

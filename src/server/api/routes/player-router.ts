@@ -7,10 +7,10 @@ router.route('/get')
     .get(controller.getAllPlayers);
 
 router.route('/get/:playerLogin')
-    .get(controller.getOrCreatePlayer)
+    .get(controller.get)
     .delete(controller.deletePlayer);
 
-router.route('/getFull/:playerLogin')
+router.route('/get-full/:playerLogin')
     .get(controller.getFull);
 
 router.route('/stats')
