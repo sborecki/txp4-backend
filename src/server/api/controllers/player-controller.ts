@@ -4,6 +4,7 @@ import * as Q from 'q';
 import * as _ from 'lodash';
 import * as PlayerModel from '../models/player-model';
 import * as PerfPartModel from '../models/perf-part-model';
+import { allowCORS } from '../../security/cors-util';
 import { StatModelDTO } from '../dto-models/stat-model-dto';
 import { EquipDataDTO } from '../dto-models/equip-data-dto';
 import { IPlayerModel } from '../models/player-model-interface';
@@ -30,6 +31,7 @@ export function getAllPlayers(request: express.Request, response: express.Respon
 }
 
 export function getFull(request: express.Request, response: express.Response): void {
+    allowCORS(response);
     PlayerModel.findOne({ playerlogin: request.params.playerLogin })
         .populate('slotengine')
         .populate('slottransmission')
@@ -53,7 +55,6 @@ export function deletePlayer(request: express.Request, response: express.Respons
 }
 
 export function getAllStats(request: express.Request, response: express.Response): void {
-    
     Q(PlayerModel.find())
         .then(function(players: IPlayer[]) {
             const getStatsPromises: Array<Q.Promise<StatModelDTO>> = new Array<Q.Promise<StatModelDTO>>();
@@ -127,6 +128,7 @@ function getStatMultipiler(slots: IPerfPart[], getSumElement: (s: IPerfPart) => 
 }
 
 export function equip(request: express.Request, response: express.Response): void {
+    allowCORS(response);
     Q(PlayerModel.findOne({ playerlogin: request.params.playerLogin }))
         .then(function(player: IPlayerModel) {
             const equipData: EquipDataDTO = request.body;

@@ -39,7 +39,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_SC_T1e"
 	},
 	{
 		"perfparttype": "engine",
@@ -52,7 +53,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_SC_T2e"
 	},
 	{
 		"perfparttype": "engine",
@@ -65,7 +67,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_SC_T3e"
 	},
 	{
 		"perfparttype": "engine",
@@ -78,7 +81,8 @@ db.perfparts.insertMany(
 		"turbostrength": -10,
 		"grip": -10,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_PT_T1e"
 	},
 	{
 		"perfparttype": "engine",
@@ -91,7 +95,8 @@ db.perfparts.insertMany(
 		"turbostrength": -30,
 		"grip": -30,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_PT_T2e"
 	},
 	{
 		"perfparttype": "engine",
@@ -104,7 +109,8 @@ db.perfparts.insertMany(
 		"turbostrength": -60,
 		"grip": -65,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_PT_T3e"
 	},
 	{
 		"perfparttype": "engine",
@@ -117,7 +123,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BZ_T1e"
 	},
 	{
 		"perfparttype": "engine",
@@ -130,7 +137,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BZ_T2e"
 	},
 	{
 		"perfparttype": "engine",
@@ -143,7 +151,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BZ_T3e"
 	},
 	{
 		"perfparttype": "engine",
@@ -156,7 +165,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": -10,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BS_T1e"
 	},
 	{
 		"perfparttype": "engine",
@@ -169,7 +179,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": -20,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BS_T2e"
 	},
 	{
 		"perfparttype": "engine",
@@ -182,7 +193,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": -35,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BS_T3e"
 	},
 	{
 		"perfparttype": "engine",
@@ -195,7 +207,8 @@ db.perfparts.insertMany(
 		"turbostrength": 20,
 		"grip": 0,
 		"grav": 15,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_KT_T1e"
 	},
 	{
 		"perfparttype": "engine",
@@ -208,7 +221,8 @@ db.perfparts.insertMany(
 		"turbostrength": 50,
 		"grip": 0,
 		"grav": 35,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_KT_T2e"
 	},
 	{
 		"perfparttype": "engine",
@@ -221,7 +235,8 @@ db.perfparts.insertMany(
 		"turbostrength": 100,
 		"grip": 0,
 		"grav": 80,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_KT_T3e"
 	},
 	{
 		"perfparttype": "engine",
@@ -234,7 +249,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 15
+		"perfpartrarity": 15,
+		"imageuri": "PerfPart_KL_T1e"
 	},
 	{
 		"perfparttype": "engine",
@@ -247,7 +263,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 30
+		"perfpartrarity": 30,
+		"imageuri": "PerfPart_KL_T2e"
 	},
 	{
 		"perfparttype": "engine",
@@ -260,7 +277,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 60
+		"perfpartrarity": 60,
+		"imageuri": "PerfPart_KL_T3e"
 	},
 	{
 		"perfparttype": "transmission",
@@ -273,7 +291,8 @@ db.perfparts.insertMany(
 		"turbostrength": 10,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_SC_T1g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -286,7 +305,8 @@ db.perfparts.insertMany(
 		"turbostrength": 15,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_SC_T2g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -299,7 +319,8 @@ db.perfparts.insertMany(
 		"turbostrength": 20,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_SC_T3g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -312,7 +333,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": -5,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_PT_T1g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -325,7 +347,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": -15,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_PT_T2g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -338,7 +361,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": -30,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_PT_T3g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -351,7 +375,8 @@ db.perfparts.insertMany(
 		"turbostrength": 10,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BZ_T1g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -364,7 +389,8 @@ db.perfparts.insertMany(
 		"turbostrength": 15,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BZ_T2g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -377,7 +403,8 @@ db.perfparts.insertMany(
 		"turbostrength": 20,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BZ_T3g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -390,7 +417,8 @@ db.perfparts.insertMany(
 		"turbostrength": 10,
 		"grip": 0,
 		"grav": -5,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BS_T1g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -403,7 +431,8 @@ db.perfparts.insertMany(
 		"turbostrength": 15,
 		"grip": 0,
 		"grav": -10,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BS_T2g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -416,7 +445,8 @@ db.perfparts.insertMany(
 		"turbostrength": 20,
 		"grip": 0,
 		"grav": -18,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BS_T3g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -429,7 +459,8 @@ db.perfparts.insertMany(
 		"turbostrength": 20,
 		"grip": 0,
 		"grav": 8,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_KT_T1g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -442,7 +473,8 @@ db.perfparts.insertMany(
 		"turbostrength": 40,
 		"grip": 0,
 		"grav": 15,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_KT_T2g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -455,7 +487,8 @@ db.perfparts.insertMany(
 		"turbostrength": 70,
 		"grip": 0,
 		"grav": 40,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_KT_T3g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -468,7 +501,8 @@ db.perfparts.insertMany(
 		"turbostrength": 7,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 8
+		"perfpartrarity": 8,
+		"imageuri": "PerfPart_KL_T1g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -481,7 +515,8 @@ db.perfparts.insertMany(
 		"turbostrength": 11,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 15
+		"perfpartrarity": 15,
+		"imageuri": "PerfPart_KL_T2g"
 	},
 	{
 		"perfparttype": "transmission",
@@ -494,7 +529,8 @@ db.perfparts.insertMany(
 		"turbostrength": 15,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 30
+		"perfpartrarity": 30,
+		"imageuri": "PerfPart_KL_T3g"
 	},
 	{
 		"perfparttype": "tires",
@@ -507,7 +543,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_SC_T1t"
 	},
 	{
 		"perfparttype": "tires",
@@ -520,7 +557,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_SC_T2t"
 	},
 	{
 		"perfparttype": "tires",
@@ -533,7 +571,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_SC_T3t"
 	},
 	{
 		"perfparttype": "tires",
@@ -546,7 +585,8 @@ db.perfparts.insertMany(
 		"turbostrength": -10,
 		"grip": -5,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_PT_T1t"
 	},
 	{
 		"perfparttype": "tires",
@@ -559,7 +599,8 @@ db.perfparts.insertMany(
 		"turbostrength": -15,
 		"grip": -15,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_PT_T2t"
 	},
 	{
 		"perfparttype": "tires",
@@ -572,7 +613,8 @@ db.perfparts.insertMany(
 		"turbostrength": -20,
 		"grip": -30,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_PT_T3t"
 	},
 	{
 		"perfparttype": "tires",
@@ -585,7 +627,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BZ_T1t"
 	},
 	{
 		"perfparttype": "tires",
@@ -598,7 +641,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BZ_T2t"
 	},
 	{
 		"perfparttype": "tires",
@@ -611,7 +655,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BZ_T3t"
 	},
 	{
 		"perfparttype": "tires",
@@ -624,7 +669,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": -5,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BS_T1t"
 	},
 	{
 		"perfparttype": "tires",
@@ -637,7 +683,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": -10,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BS_T2t"
 	},
 	{
 		"perfparttype": "tires",
@@ -650,7 +697,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": -18,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_BS_T3t"
 	},
 	{
 		"perfparttype": "tires",
@@ -663,7 +711,8 @@ db.perfparts.insertMany(
 		"turbostrength": 20,
 		"grip": 0,
 		"grav": 8,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_KT_T1t"
 	},
 	{
 		"perfparttype": "tires",
@@ -676,7 +725,8 @@ db.perfparts.insertMany(
 		"turbostrength": 50,
 		"grip": 0,
 		"grav": 15,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_KT_T2t"
 	},
 	{
 		"perfparttype": "tires",
@@ -689,7 +739,8 @@ db.perfparts.insertMany(
 		"turbostrength": 100,
 		"grip": 0,
 		"grav": 40,
-		"perfpartrarity": 0
+		"perfpartrarity": 0,
+		"imageuri": "PerfPart_KT_T3t"
 	},
 	{
 		"perfparttype": "tires",
@@ -702,7 +753,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 5
+		"perfpartrarity": 5,
+		"imageuri": "PerfPart_KL_T1t"
 	},
 	{
 		"perfparttype": "tires",
@@ -715,7 +767,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 12
+		"perfpartrarity": 12,
+		"imageuri": "PerfPart_KL_T2t"
 	},
 	{
 		"perfparttype": "tires",
@@ -728,7 +781,8 @@ db.perfparts.insertMany(
 		"turbostrength": 0,
 		"grip": 0,
 		"grav": 0,
-		"perfpartrarity": 24
+		"perfpartrarity": 24,
+		"imageuri": "PerfPart_KL_T3t"
 	}
 ]
 );
