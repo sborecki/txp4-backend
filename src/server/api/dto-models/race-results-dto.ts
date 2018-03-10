@@ -3,5 +3,5 @@
 export class RaceResultsDTO {
     public environment: string;
     public authorTime: number;
-    public results: RacePositionDTO[];
+    public positions: RacePositionDTO[];
 }

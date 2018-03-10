@@ -12,13 +12,22 @@ import { RaceResultsDTO } from '../dto-models/race-results-dto';
 import { RacePositionDTO } from '../dto-models/race-position-dto';
 import { RaceParamsDTO } from '../dto-models/race-params-dto';
 import { DistributionResultDTO } from '../dto-models/distribution-result-dto';
+import { ISession } from 'src/server/api/models/session-interface';
 
 export function onRaceEnd(request: express.Request, response: express.Response): void {
+    const raceResults: RaceResultsDTO = request.body;
+    var sessionCache: ISessionModel = null;
     Q(SessionModel.findOne())
-        .then(function (session: ISessionModel) {
+        .then(function(session: ISessionModel) {
             session.raceCount += 1;
             session.save();
-            const updatePromises: Array<Q.Promise<DistributionResultDTO>> = getDistributePointsPromise(request.body, session);
+            sessionCache = session;
+            const checkRegisterPromises: Array<Q.Promise<RegisteredInfo>> = getCheckRegisteredPromise(raceResults.positions);
+            return Q.all(checkRegisterPromises);
+        })
+        .then(function(registered: RegisteredInfo[]) {
+            raceResults.positions = filterNotRegisteredPlayers(raceResults.positions, registered)
+            const updatePromises: Array<Q.Promise<DistributionResultDTO>> = getDistributePointsPromise(raceResults, sessionCache);
             return Q.all(updatePromises);
         })
         .then(function(results: DistributionResultDTO[]) {
@@ -31,14 +40,37 @@ export function onRaceEnd(request: express.Request, response: express.Response):
         .done();
 }
 
+function getCheckRegisteredPromise(positions: RacePositionDTO[]): Array<Q.Promise<RegisteredInfo>> {
+    const checkPromises: Array<Q.Promise<RegisteredInfo>> = new Array<Q.Promise<RegisteredInfo>>();
+    for (const racePosition of positions) {
+        checkPromises.push(getIsRegistered(racePosition.playerLogin));
+    }
+    return checkPromises;
+}
+
+function getIsRegistered(playerLogin: string): Q.Promise<RegisteredInfo> {
+    return Q(PlayerModel.count({ playerlogin: playerLogin }).exec())
+        .then(function (foundRecords: number) {
+            if (foundRecords === 1)
+                return new RegisteredInfo(playerLogin, true);
+            return new RegisteredInfo(playerLogin, false);
+        });
+}
+
+function filterNotRegisteredPlayers(positions: RacePositionDTO[], registered: RegisteredInfo[]) {
+    return _.chain(positions)
+        .filter(p => _.find(registered, r => r.playerLogin === p.playerLogin).isRegistered)
+        .value();
+}
+
 function getDistributePointsPromise(raceResults: RaceResultsDTO, session: ISessionModel): Array<Q.Promise<DistributionResultDTO>> {
     const raceParams: RaceParamsDTO = new RaceParamsDTO();
     raceParams.txpMultipiler = session.txpMultipiler;
     raceParams.raceCountForPerfPartRarity = session.raceCount * session.perfPartRarityMultipiler;
-    raceParams.noOfPlayers = raceResults.results.length;
+    raceParams.noOfPlayers = raceResults.positions.length;
 
     const updatePromises: Array<Q.Promise<DistributionResultDTO>> = new Array<Q.Promise<DistributionResultDTO>>();
-    for (const raceResult of raceResults.results) {
+    for (const raceResult of raceResults.positions) {
         updatePromises.push(getUpdatePlayerPromise(raceResult, raceParams));
     }
     return updatePromises;
@@ -55,15 +87,15 @@ function getUpdatePlayerPromise(racePosition: RacePositionDTO, raceParams: RaceP
             player = foundPlayer;
             return PerfPartModel.findById(player.slotengine).exec();
         })
-        .then(function (foundPerfPart: IPerfPart) {
+        .then(function(foundPerfPart: IPerfPart) {
             slotEngine = foundPerfPart;
             return PerfPartModel.findById(player.slottransmission).exec();
         })
-        .then(function (foundPerfPart: IPerfPart) {
+        .then(function(foundPerfPart: IPerfPart) {
             slotTransmission = foundPerfPart;
             return PerfPartModel.findById(player.slottires).exec();
         })
-        .then(function (foundPerfPart: IPerfPart) {
+        .then(function(foundPerfPart: IPerfPart) {
             slotTires = foundPerfPart;
             tier = getPerfPartTier(raceParams.raceCountForPerfPartRarity, [slotEngine, slotTransmission, slotTires]);
             return PerfPartModel.count({ tier: tier }).exec();
@@ -122,4 +154,13 @@ function calculateExtraTxp(multipiler: number, noOfPlayers: number, position: nu
 function calculatePartDropTier(multipiler: number): number {
     const tier: number = Math.floor(Math.random() + (multipiler / 5));
     return Math.max(1, Math.min(tier, 3));
+}
+
+class RegisteredInfo {
+    constructor(playerLogin: string, isRegistered: boolean) {
+        this.playerLogin = playerLogin;
+        this.isRegistered = isRegistered;
+    }
+    public playerLogin: string;
+    public isRegistered: boolean;
 }
