@@ -24,3 +24,11 @@ yarn start:watch
 ```
 yarn lint:watch
 ```
+
+## Before first launch
+Project requires working MongoDB database.
+Open README_mongoDB.txt and follow the instructions.
+Please also set up variable names:
+ADMIN_AUTH_SECRET
+SERVER_AUTH_SECRET
+PORT
