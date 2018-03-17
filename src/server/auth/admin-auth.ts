@@ -2,7 +2,10 @@
 
 export class AdminAuth extends AbstractAuth {
 
-    protected nextAuthResponsible = null;
+    constructor() {
+        super(null);
+        //this.checkAuth = this.checkAuth.bind(this);
+    }
 
     protected checkAuth(login: String, pass: String): Promise<boolean> {
         return Promise.resolve(pass === process.env.ADMIN_AUTH_SECRET);

@@ -5,6 +5,10 @@ export abstract class AbstractAuth {
     protected abstract checkAuth(login: String, pass: String): Promise<boolean>;
     protected nextAuthResponsible: AbstractAuth;
 
+    constructor(responsible: AbstractAuth) {
+        this.nextAuthResponsible = responsible;
+    }
+
     public auth(request: express.Request, response: express.Response, next: () => void): void {
         this.checkAuth(this.getLogin(request), this.getPass(request))
             .then(function (isAuthorized: boolean) {

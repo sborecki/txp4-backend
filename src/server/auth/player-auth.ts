@@ -6,7 +6,10 @@ import { IPlayerModel } from '../api/models/player-model-interface';
 
 export class PlayerAuth extends AbstractAuth {
 
-    protected nextAuthResponsible = new AdminAuth();
+    constructor() {
+        super(new AdminAuth());
+        //this.checkAuth = this.checkAuth.bind(this);
+    };
 
     protected checkAuth(login: String, pass: String): Promise<boolean> {
         return PlayerModel.findOne({ playerlogin: login }, ['pass'])
@@ -19,3 +22,5 @@ export class PlayerAuth extends AbstractAuth {
     }
 
 }
+
+export let playerAuth = new PlayerAuth();
